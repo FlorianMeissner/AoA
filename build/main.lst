@@ -248,10 +248,11 @@
   48 001a 0895      		ret
   49               		.cfi_endproc
   50               	.LFE6:
-  52               	.global	setLED
-  54               	setLED:
-  55               	.LFB7:
-  56               		.file 3 "main.c"
+  52               		.section	.text.startup,"ax",@progbits
+  53               	.global	main
+  55               	main:
+  56               	.LFB7:
+  57               		.file 3 "main.c"
    1:main.c        **** /*
    2:main.c        ****  * main.c
    3:main.c        ****  *
@@ -279,107 +280,88 @@
   25:main.c        **** #include "delay_ms.h"
   26:main.c        **** //~ #include "bool.h"
   27:main.c        **** #include "io.h"
-  28:main.c        **** 
+  28:main.c        **** #include "leds.h"
   29:main.c        **** 
-  30:main.c        **** #define LED B,PB0
-  31:main.c        **** 
+  30:main.c        **** 
+  31:main.c        **** #define LED B,PB1
   32:main.c        **** 
-  33:main.c        **** void setLED(led) {
-  57               		.loc 3 33 0
-  58               		.cfi_startproc
-  59               	.LVL3:
+  33:main.c        **** 
+  34:main.c        **** 
+  35:main.c        **** 
+  36:main.c        **** int main(void)
+  37:main.c        **** {
+  58               		.loc 3 37 0
+  59               		.cfi_startproc
   60               	/* prologue: function */
   61               	/* frame size = 0 */
   62               	/* stack size = 0 */
   63               	.L__stack_usage = 0
-  34:main.c        ****     PORTB |= (1<<PB0);
-  64               		.loc 3 34 0
-  65 001c C09A      		sbi 0x18,0
-  66 001e 0895      		ret
-  67               		.cfi_endproc
-  68               	.LFE7:
-  70               		.section	.text.startup,"ax",@progbits
-  71               	.global	main
-  73               	main:
-  74               	.LFB8:
-  35:main.c        **** }
-  36:main.c        **** 
-  37:main.c        **** 
-  38:main.c        **** int main(void)
-  39:main.c        **** {
-  75               		.loc 3 39 0
-  76               		.cfi_startproc
-  77               	/* prologue: function */
-  78               	/* frame size = 0 */
-  79               	/* stack size = 0 */
-  80               	.L__stack_usage = 0
-  40:main.c        **** 
-  41:main.c        ****     // Define outputs
-  42:main.c        ****     DDRB = 0xff;
-  81               		.loc 3 42 0
-  82 0000 8FEF      		ldi r24,lo8(-1)
-  83 0002 87BB      		out 0x17,r24
-  43:main.c        ****     DDRC = 0xFF;
-  84               		.loc 3 43 0
-  85 0004 84BB      		out 0x14,r24
-  44:main.c        ****     DDRD = 0xFF;
-  86               		.loc 3 44 0
-  87 0006 81BB      		out 0x11,r24
-  45:main.c        **** 
-  46:main.c        ****     // Initialize all outputs as low.
-  47:main.c        ****     PORTB = 0;
-  88               		.loc 3 47 0
-  89 0008 18BA      		out 0x18,__zero_reg__
-  48:main.c        ****     PORTC = 0;
-  90               		.loc 3 48 0
-  91 000a 15BA      		out 0x15,__zero_reg__
-  49:main.c        ****     PORTD = 0;
-  92               		.loc 3 49 0
-  93 000c 12BA      		out 0x12,__zero_reg__
-  94               	.L7:
-  50:main.c        **** 
-  51:main.c        ****     // Output test run
-  52:main.c        ****     //~ lamptest();
-  53:main.c        ****     //~ setLED(1);
-  54:main.c        **** 
-  55:main.c        **** 
-  56:main.c        ****     // Endless loop
-  57:main.c        ****     while(1) {
-  58:main.c        ****         //~ PORTB |= (1<<PB0);
-  59:main.c        ****         pin_high(LED);
-  95               		.loc 3 59 0 discriminator 1
-  96 000e C09A      		sbi 0x18,0
-  60:main.c        ****         delay_ms(1000);
-  97               		.loc 3 60 0 discriminator 1
-  98 0010 88EE      		ldi r24,lo8(-24)
-  99 0012 93E0      		ldi r25,lo8(3)
- 100 0014 0E94 0000 		call delay_ms
- 101               	.LVL4:
-  61:main.c        ****         //~ PORTB &= ~(1<<PB0);
-  62:main.c        ****         pin_low(LED);
- 102               		.loc 3 62 0 discriminator 1
- 103 0018 C098      		cbi 0x18,0
-  63:main.c        ****         delay_ms(1000);
- 104               		.loc 3 63 0 discriminator 1
- 105 001a 88EE      		ldi r24,lo8(-24)
- 106 001c 93E0      		ldi r25,lo8(3)
- 107 001e 0E94 0000 		call delay_ms
- 108               	.LVL5:
- 109 0022 00C0      		rjmp .L7
- 110               		.cfi_endproc
- 111               	.LFE8:
- 113               		.text
- 114               	.Letext0:
- 115               		.file 4 "/usr/lib/avr/include/stdint.h"
+  38:main.c        **** 
+  39:main.c        ****     // Define outputs
+  40:main.c        ****     DDRB = 0xff;
+  64               		.loc 3 40 0
+  65 0000 8FEF      		ldi r24,lo8(-1)
+  66 0002 87BB      		out 0x17,r24
+  41:main.c        ****     DDRC = 0xFF;
+  67               		.loc 3 41 0
+  68 0004 84BB      		out 0x14,r24
+  42:main.c        ****     DDRD = 0xFF;
+  69               		.loc 3 42 0
+  70 0006 81BB      		out 0x11,r24
+  43:main.c        **** 
+  44:main.c        ****     // Initialize all outputs as low.
+  45:main.c        ****     PORTB = 0;
+  71               		.loc 3 45 0
+  72 0008 18BA      		out 0x18,__zero_reg__
+  46:main.c        ****     PORTC = 0;
+  73               		.loc 3 46 0
+  74 000a 15BA      		out 0x15,__zero_reg__
+  47:main.c        ****     PORTD = 0;
+  75               		.loc 3 47 0
+  76 000c 12BA      		out 0x12,__zero_reg__
+  77               	.L6:
+  48:main.c        **** 
+  49:main.c        ****     // Output test run
+  50:main.c        ****     //~ lamptest();
+  51:main.c        ****     //~ setLED(1);
+  52:main.c        **** 
+  53:main.c        **** 
+  54:main.c        ****     // Endless loop
+  55:main.c        ****     while(1) {
+  56:main.c        ****         //~ PORTB |= (1<<PB0);
+  57:main.c        ****         pin_high(LED01);
+  78               		.loc 3 57 0 discriminator 1
+  79 000e C09A      		sbi 0x18,0
+  58:main.c        ****         delay_ms(1000);
+  80               		.loc 3 58 0 discriminator 1
+  81 0010 88EE      		ldi r24,lo8(-24)
+  82 0012 93E0      		ldi r25,lo8(3)
+  83 0014 0E94 0000 		call delay_ms
+  84               	.LVL3:
+  59:main.c        ****         //~ PORTB &= ~(1<<PB0);
+  60:main.c        ****         pin_low(LED01);
+  85               		.loc 3 60 0 discriminator 1
+  86 0018 C098      		cbi 0x18,0
+  61:main.c        ****         delay_ms(1000);
+  87               		.loc 3 61 0 discriminator 1
+  88 001a 88EE      		ldi r24,lo8(-24)
+  89 001c 93E0      		ldi r25,lo8(3)
+  90 001e 0E94 0000 		call delay_ms
+  91               	.LVL4:
+  92 0022 00C0      		rjmp .L6
+  93               		.cfi_endproc
+  94               	.LFE7:
+  96               		.text
+  97               	.Letext0:
+  98               		.file 4 "/usr/lib/avr/include/stdint.h"
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 main.c
-     /tmp/ccc7jFDD.s:2      *ABS*:000000000000003e __SP_H__
-     /tmp/ccc7jFDD.s:3      *ABS*:000000000000003d __SP_L__
-     /tmp/ccc7jFDD.s:4      *ABS*:000000000000003f __SREG__
-     /tmp/ccc7jFDD.s:5      *ABS*:0000000000000000 __tmp_reg__
-     /tmp/ccc7jFDD.s:6      *ABS*:0000000000000001 __zero_reg__
-     /tmp/ccc7jFDD.s:12     .text:0000000000000000 delay_ms
-     /tmp/ccc7jFDD.s:54     .text:000000000000001c setLED
-     /tmp/ccc7jFDD.s:73     .text.startup:0000000000000000 main
+     /tmp/ccD5ZuZJ.s:2      *ABS*:000000000000003e __SP_H__
+     /tmp/ccD5ZuZJ.s:3      *ABS*:000000000000003d __SP_L__
+     /tmp/ccD5ZuZJ.s:4      *ABS*:000000000000003f __SREG__
+     /tmp/ccD5ZuZJ.s:5      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/ccD5ZuZJ.s:6      *ABS*:0000000000000001 __zero_reg__
+     /tmp/ccD5ZuZJ.s:12     .text:0000000000000000 delay_ms
+     /tmp/ccD5ZuZJ.s:55     .text.startup:0000000000000000 main
 
 NO UNDEFINED SYMBOLS

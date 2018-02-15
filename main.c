@@ -25,14 +25,12 @@
 #include "delay_ms.h"
 //~ #include "bool.h"
 #include "io.h"
+#include "leds.h"
 
 
-#define LED B,PB0
+#define LED B,PB1
 
 
-void setLED(led) {
-    PORTB |= (1<<PB0);
-}
 
 
 int main(void)
@@ -56,10 +54,10 @@ int main(void)
     // Endless loop
     while(1) {
         //~ PORTB |= (1<<PB0);
-        pin_high(LED);
+        pin_high(LED01);
         delay_ms(1000);
         //~ PORTB &= ~(1<<PB0);
-        pin_low(LED);
+        pin_low(LED01);
         delay_ms(1000);
     }
     return 0;

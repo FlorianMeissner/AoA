@@ -3,31 +3,31 @@ build/main.elf:     Dateiformat elf32-avr
 
 Sektionen:
 Idx Name          Größe     VMA       LMA       Datei-Off Ausr.
-  0 .text         000000b4  00000000  00000000  00000074  2**1
+  0 .text         000000b0  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000000  00800060  000000b4  00000128  2**0
+  1 .data         00000000  00800060  000000b0  00000124  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .stab         000006cc  00000000  00000000  00000128  2**2
+  2 .stab         000006cc  00000000  00000000  00000124  2**2
                   CONTENTS, READONLY, DEBUGGING
-  3 .stabstr      00000054  00000000  00000000  000007f4  2**0
+  3 .stabstr      00000054  00000000  00000000  000007f0  2**0
                   CONTENTS, READONLY, DEBUGGING
-  4 .comment      00000011  00000000  00000000  00000848  2**0
+  4 .comment      00000011  00000000  00000000  00000844  2**0
                   CONTENTS, READONLY
-  5 .debug_aranges 00000028  00000000  00000000  00000859  2**0
+  5 .debug_aranges 00000028  00000000  00000000  00000855  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   000001b8  00000000  00000000  00000881  2**0
+  6 .debug_info   0000018c  00000000  00000000  0000087d  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 0000013d  00000000  00000000  00000a39  2**0
+  7 .debug_abbrev 00000125  00000000  00000000  00000a09  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   000000c6  00000000  00000000  00000b76  2**0
+  8 .debug_line   000000c2  00000000  00000000  00000b2e  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000044  00000000  00000000  00000c3c  2**2
+  9 .debug_frame  00000034  00000000  00000000  00000bf0  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00000163  00000000  00000000  00000c80  2**0
+ 10 .debug_str    0000015c  00000000  00000000  00000c24  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00000024  00000000  00000000  00000de3  2**0
+ 11 .debug_loc    00000024  00000000  00000000  00000d80  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000018  00000000  00000000  00000e07  2**0
+ 12 .debug_ranges 00000018  00000000  00000000  00000da4  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -62,8 +62,8 @@ Disassembly of section .text:
   5a:	d4 e0       	ldi	r29, 0x04	; 4
   5c:	de bf       	out	0x3e, r29	; 62
   5e:	cd bf       	out	0x3d, r28	; 61
-  60:	0e 94 46 00 	call	0x8c	; 0x8c <main>
-  64:	0c 94 58 00 	jmp	0xb0	; 0xb0 <_exit>
+  60:	0e 94 44 00 	call	0x88	; 0x88 <main>
+  64:	0c 94 56 00 	jmp	0xac	; 0xac <_exit>
 
 00000068 <__bad_interrupt>:
   68:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -99,59 +99,49 @@ void delay_ms(uint16_t ms)
 }
   86:	08 95       	ret
 
-00000088 <setLED>:
-
-#define LED B,PB0
-
-
-void setLED(led) {
-    PORTB |= (1<<PB0);
-  88:	c0 9a       	sbi	0x18, 0	; 24
-  8a:	08 95       	ret
-
-0000008c <main>:
+00000088 <main>:
 
 int main(void)
 {
 
     // Define outputs
     DDRB = 0xff;
-  8c:	8f ef       	ldi	r24, 0xFF	; 255
-  8e:	87 bb       	out	0x17, r24	; 23
+  88:	8f ef       	ldi	r24, 0xFF	; 255
+  8a:	87 bb       	out	0x17, r24	; 23
     DDRC = 0xFF;
-  90:	84 bb       	out	0x14, r24	; 20
+  8c:	84 bb       	out	0x14, r24	; 20
     DDRD = 0xFF;
-  92:	81 bb       	out	0x11, r24	; 17
+  8e:	81 bb       	out	0x11, r24	; 17
 
     // Initialize all outputs as low.
     PORTB = 0;
-  94:	18 ba       	out	0x18, r1	; 24
+  90:	18 ba       	out	0x18, r1	; 24
     PORTC = 0;
-  96:	15 ba       	out	0x15, r1	; 21
+  92:	15 ba       	out	0x15, r1	; 21
     PORTD = 0;
-  98:	12 ba       	out	0x12, r1	; 18
+  94:	12 ba       	out	0x12, r1	; 18
 
 
     // Endless loop
     while(1) {
         //~ PORTB |= (1<<PB0);
-        pin_high(LED);
-  9a:	c0 9a       	sbi	0x18, 0	; 24
+        pin_high(LED01);
+  96:	c0 9a       	sbi	0x18, 0	; 24
         delay_ms(1000);
-  9c:	88 ee       	ldi	r24, 0xE8	; 232
-  9e:	93 e0       	ldi	r25, 0x03	; 3
-  a0:	0e 94 36 00 	call	0x6c	; 0x6c <delay_ms>
+  98:	88 ee       	ldi	r24, 0xE8	; 232
+  9a:	93 e0       	ldi	r25, 0x03	; 3
+  9c:	0e 94 36 00 	call	0x6c	; 0x6c <delay_ms>
         //~ PORTB &= ~(1<<PB0);
-        pin_low(LED);
-  a4:	c0 98       	cbi	0x18, 0	; 24
+        pin_low(LED01);
+  a0:	c0 98       	cbi	0x18, 0	; 24
         delay_ms(1000);
-  a6:	88 ee       	ldi	r24, 0xE8	; 232
-  a8:	93 e0       	ldi	r25, 0x03	; 3
-  aa:	0e 94 36 00 	call	0x6c	; 0x6c <delay_ms>
-  ae:	f5 cf       	rjmp	.-22     	; 0x9a <main+0xe>
+  a2:	88 ee       	ldi	r24, 0xE8	; 232
+  a4:	93 e0       	ldi	r25, 0x03	; 3
+  a6:	0e 94 36 00 	call	0x6c	; 0x6c <delay_ms>
+  aa:	f5 cf       	rjmp	.-22     	; 0x96 <main+0xe>
 
-000000b0 <_exit>:
-  b0:	f8 94       	cli
+000000ac <_exit>:
+  ac:	f8 94       	cli
 
-000000b2 <__stop_program>:
-  b2:	ff cf       	rjmp	.-2      	; 0xb2 <__stop_program>
+000000ae <__stop_program>:
+  ae:	ff cf       	rjmp	.-2      	; 0xae <__stop_program>
