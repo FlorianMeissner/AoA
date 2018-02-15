@@ -17,13 +17,17 @@
 
 #ifndef F_CPU
     #warning "Setting F_CPU to 1600000UL."
-    #define F_CPU 1600000UL
+    #define F_CPU 16000000UL
 #endif
 
 #include <avr/io.h>
 #include <stdint.h>
 #include "delay_ms.h"
-#include "bool.h"
+//~ #include "bool.h"
+#include "io.h"
+
+
+#define LED B,PB0
 
 
 void setLED(led) {
@@ -46,13 +50,17 @@ int main(void)
 
     // Output test run
     //~ lamptest();
-    setLED(1);
-    //~ PORTB |= (1<<PB0);
+    //~ setLED(1);
 
 
     // Endless loop
     while(1) {
-
+        //~ PORTB |= (1<<PB0);
+        pin_high(LED);
+        delay_ms(1000);
+        //~ PORTB &= ~(1<<PB0);
+        pin_low(LED);
+        delay_ms(1000);
     }
     return 0;
 }

@@ -118,7 +118,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x0000000000000000       0xa8
+.text           0x0000000000000000       0xb4
  *(.vectors)
  .vectors       0x0000000000000000       0x54 /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr5/crtm16.o
                 0x0000000000000000                __vectors
@@ -197,26 +197,26 @@ END GROUP
  .text          0x000000000000008c        0x0 /usr/lib/gcc/avr/4.8.2/avr5/libgcc.a(_exit.o)
                 0x000000000000008c                . = ALIGN (0x2)
  *(.text.*)
- .text.startup  0x000000000000008c       0x18 build//main.o
+ .text.startup  0x000000000000008c       0x24 build//main.o
                 0x000000000000008c                main
  .text.libgcc.mul
-                0x00000000000000a4        0x0 /usr/lib/gcc/avr/4.8.2/avr5/libgcc.a(_exit.o)
+                0x00000000000000b0        0x0 /usr/lib/gcc/avr/4.8.2/avr5/libgcc.a(_exit.o)
  .text.libgcc.div
-                0x00000000000000a4        0x0 /usr/lib/gcc/avr/4.8.2/avr5/libgcc.a(_exit.o)
- .text.libgcc   0x00000000000000a4        0x0 /usr/lib/gcc/avr/4.8.2/avr5/libgcc.a(_exit.o)
+                0x00000000000000b0        0x0 /usr/lib/gcc/avr/4.8.2/avr5/libgcc.a(_exit.o)
+ .text.libgcc   0x00000000000000b0        0x0 /usr/lib/gcc/avr/4.8.2/avr5/libgcc.a(_exit.o)
  .text.libgcc.prologue
-                0x00000000000000a4        0x0 /usr/lib/gcc/avr/4.8.2/avr5/libgcc.a(_exit.o)
+                0x00000000000000b0        0x0 /usr/lib/gcc/avr/4.8.2/avr5/libgcc.a(_exit.o)
  .text.libgcc.builtins
-                0x00000000000000a4        0x0 /usr/lib/gcc/avr/4.8.2/avr5/libgcc.a(_exit.o)
+                0x00000000000000b0        0x0 /usr/lib/gcc/avr/4.8.2/avr5/libgcc.a(_exit.o)
  .text.libgcc.fmul
-                0x00000000000000a4        0x0 /usr/lib/gcc/avr/4.8.2/avr5/libgcc.a(_exit.o)
+                0x00000000000000b0        0x0 /usr/lib/gcc/avr/4.8.2/avr5/libgcc.a(_exit.o)
  .text.libgcc.fixed
-                0x00000000000000a4        0x0 /usr/lib/gcc/avr/4.8.2/avr5/libgcc.a(_exit.o)
-                0x00000000000000a4                . = ALIGN (0x2)
+                0x00000000000000b0        0x0 /usr/lib/gcc/avr/4.8.2/avr5/libgcc.a(_exit.o)
+                0x00000000000000b0                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000000000000a4        0x0 /usr/lib/gcc/avr/4.8.2/avr5/libgcc.a(_exit.o)
-                0x00000000000000a4                exit
-                0x00000000000000a4                _exit
+ .fini9         0x00000000000000b0        0x0 /usr/lib/gcc/avr/4.8.2/avr5/libgcc.a(_exit.o)
+                0x00000000000000b0                exit
+                0x00000000000000b0                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -235,11 +235,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000000000000a4        0x4 /usr/lib/gcc/avr/4.8.2/avr5/libgcc.a(_exit.o)
+ .fini0         0x00000000000000b0        0x4 /usr/lib/gcc/avr/4.8.2/avr5/libgcc.a(_exit.o)
  *(.fini0)
-                0x00000000000000a8                _etext = .
+                0x00000000000000b4                _etext = .
 
-.data           0x0000000000800060        0x0 load address 0x00000000000000a8
+.data           0x0000000000800060        0x0 load address 0x00000000000000b4
                 0x0000000000800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x0000000000800060        0x0 /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr5/crtm16.o
@@ -262,8 +262,8 @@ END GROUP
  *(.bss*)
  *(COMMON)
                 0x0000000000800060                PROVIDE (__bss_end, .)
-                0x00000000000000a8                __data_load_start = LOADADDR (.data)
-                0x00000000000000a8                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00000000000000b4                __data_load_start = LOADADDR (.data)
+                0x00000000000000b4                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x0000000000800060        0x0
                 0x0000000000800060                PROVIDE (__noinit_start, .)
@@ -336,18 +336,18 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x0000000000000000      0x19c
+.debug_info     0x0000000000000000      0x1b8
  *(.debug_info)
- .debug_info    0x0000000000000000      0x19c build//main.o
+ .debug_info    0x0000000000000000      0x1b8 build//main.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev   0x0000000000000000      0x130
+.debug_abbrev   0x0000000000000000      0x13d
  *(.debug_abbrev)
- .debug_abbrev  0x0000000000000000      0x130 build//main.o
+ .debug_abbrev  0x0000000000000000      0x13d build//main.o
 
-.debug_line     0x0000000000000000       0xb3
+.debug_line     0x0000000000000000       0xc6
  *(.debug_line)
- .debug_line    0x0000000000000000       0xb3 build//main.o
+ .debug_line    0x0000000000000000       0xc6 build//main.o
 
 .debug_frame    0x0000000000000000       0x44
  *(.debug_frame)
