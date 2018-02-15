@@ -42,11 +42,11 @@ int main(void)
     PORTD = 0;
 
     // Output test run
+    lamptest();
 
 
     // Endless loop
     while(1) {
-        lamptest();
     }
     return 0;
 }

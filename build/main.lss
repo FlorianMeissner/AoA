@@ -3,31 +3,31 @@ build/main.elf:     Dateiformat elf32-avr
 
 Sektionen:
 Idx Name          Größe     VMA       LMA       Datei-Off Ausr.
-  0 .text         000000b4  00000000  00000000  00000074  2**1
+  0 .text         00000192  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000000  00800060  000000b4  00000128  2**0
+  1 .data         00000000  00800060  00000192  00000206  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .stab         000006cc  00000000  00000000  00000128  2**2
+  2 .stab         000006cc  00000000  00000000  00000208  2**2
                   CONTENTS, READONLY, DEBUGGING
-  3 .stabstr      00000054  00000000  00000000  000007f4  2**0
+  3 .stabstr      00000054  00000000  00000000  000008d4  2**0
                   CONTENTS, READONLY, DEBUGGING
-  4 .comment      00000011  00000000  00000000  00000848  2**0
+  4 .comment      00000011  00000000  00000000  00000928  2**0
                   CONTENTS, READONLY
-  5 .debug_aranges 00000028  00000000  00000000  00000859  2**0
+  5 .debug_aranges 00000028  00000000  00000000  00000939  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   000001bd  00000000  00000000  00000881  2**0
+  6 .debug_info   0000037b  00000000  00000000  00000961  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 0000015a  00000000  00000000  00000a3e  2**0
+  7 .debug_abbrev 00000157  00000000  00000000  00000cdc  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   000000c2  00000000  00000000  00000b98  2**0
+  8 .debug_line   000000f6  00000000  00000000  00000e33  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000044  00000000  00000000  00000c5c  2**2
+  9 .debug_frame  00000044  00000000  00000000  00000f2c  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    0000016b  00000000  00000000  00000ca0  2**0
+ 10 .debug_str    0000016b  00000000  00000000  00000f70  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00000024  00000000  00000000  00000e0b  2**0
+ 11 .debug_loc    00000024  00000000  00000000  000010db  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000018  00000000  00000000  00000e2f  2**0
+ 12 .debug_ranges 00000018  00000000  00000000  000010ff  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -62,8 +62,8 @@ Disassembly of section .text:
   5a:	d4 e0       	ldi	r29, 0x04	; 4
   5c:	de bf       	out	0x3e, r29	; 62
   5e:	cd bf       	out	0x3d, r28	; 61
-  60:	0e 94 4e 00 	call	0x9c	; 0x9c <main>
-  64:	0c 94 58 00 	jmp	0xb0	; 0xb0 <_exit>
+  60:	0e 94 bd 00 	call	0x17a	; 0x17a <main>
+  64:	0c 94 c7 00 	jmp	0x18e	; 0x18e <_exit>
 
 00000068 <__bad_interrupt>:
   68:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -100,56 +100,240 @@ void delay_ms(uint16_t ms)
   86:	08 95       	ret
 
 00000088 <lamptest>:
-   //~ pin_high(LED01);
-   //~ delay_ms(delay);
-   //~ pin_low(LED01);
-   //~ delay_ms(delay);
-//~
-   pin_high(LED02);
-  88:	c1 9a       	sbi	0x18, 1	; 24
-   delay_ms(delay);
-  8a:	84 ef       	ldi	r24, 0xF4	; 244
-  8c:	91 e0       	ldi	r25, 0x01	; 1
-  8e:	0e 94 36 00 	call	0x6c	; 0x6c <delay_ms>
-   pin_low(LED02);
-  92:	c1 98       	cbi	0x18, 1	; 24
-   delay_ms(delay);
-  94:	84 ef       	ldi	r24, 0xF4	; 244
-  96:	91 e0       	ldi	r25, 0x01	; 1
-  98:	0c 94 36 00 	jmp	0x6c	; 0x6c <delay_ms>
 
-0000009c <main>:
+
+void lamptest() {
+   int delay = 250;
+
+   pin_high(LED01);
+  88:	c0 9a       	sbi	0x18, 0	; 24
+   delay_ms(delay);
+  8a:	8a ef       	ldi	r24, 0xFA	; 250
+  8c:	90 e0       	ldi	r25, 0x00	; 0
+  8e:	0e 94 36 00 	call	0x6c	; 0x6c <delay_ms>
+   pin_low(LED01);
+  92:	c0 98       	cbi	0x18, 0	; 24
+   //~ delay_ms(delay);
+
+   pin_high(LED02);
+  94:	c1 9a       	sbi	0x18, 1	; 24
+   delay_ms(delay);
+  96:	8a ef       	ldi	r24, 0xFA	; 250
+  98:	90 e0       	ldi	r25, 0x00	; 0
+  9a:	0e 94 36 00 	call	0x6c	; 0x6c <delay_ms>
+   pin_low(LED02);
+  9e:	c1 98       	cbi	0x18, 1	; 24
+   //~ delay_ms(delay);
+
+   pin_high(LED03);
+  a0:	c2 9a       	sbi	0x18, 2	; 24
+   delay_ms(delay);
+  a2:	8a ef       	ldi	r24, 0xFA	; 250
+  a4:	90 e0       	ldi	r25, 0x00	; 0
+  a6:	0e 94 36 00 	call	0x6c	; 0x6c <delay_ms>
+   pin_low(LED03);
+  aa:	c2 98       	cbi	0x18, 2	; 24
+   //~ delay_ms(delay);
+
+   pin_high(LED04);
+  ac:	c3 9a       	sbi	0x18, 3	; 24
+   delay_ms(delay);
+  ae:	8a ef       	ldi	r24, 0xFA	; 250
+  b0:	90 e0       	ldi	r25, 0x00	; 0
+  b2:	0e 94 36 00 	call	0x6c	; 0x6c <delay_ms>
+   pin_low(LED04);
+  b6:	c3 98       	cbi	0x18, 3	; 24
+   //~ delay_ms(delay);
+
+   pin_high(LED05);
+  b8:	af 9a       	sbi	0x15, 7	; 21
+   delay_ms(delay);
+  ba:	8a ef       	ldi	r24, 0xFA	; 250
+  bc:	90 e0       	ldi	r25, 0x00	; 0
+  be:	0e 94 36 00 	call	0x6c	; 0x6c <delay_ms>
+   pin_low(LED05);
+  c2:	af 98       	cbi	0x15, 7	; 21
+   //~ delay_ms(delay);
+
+   pin_high(LED06);
+  c4:	ae 9a       	sbi	0x15, 6	; 21
+   delay_ms(delay);
+  c6:	8a ef       	ldi	r24, 0xFA	; 250
+  c8:	90 e0       	ldi	r25, 0x00	; 0
+  ca:	0e 94 36 00 	call	0x6c	; 0x6c <delay_ms>
+   pin_low(LED06);
+  ce:	ae 98       	cbi	0x15, 6	; 21
+   //~ delay_ms(delay);
+
+   pin_high(LED07);
+  d0:	ad 9a       	sbi	0x15, 5	; 21
+   delay_ms(delay);
+  d2:	8a ef       	ldi	r24, 0xFA	; 250
+  d4:	90 e0       	ldi	r25, 0x00	; 0
+  d6:	0e 94 36 00 	call	0x6c	; 0x6c <delay_ms>
+   pin_low(LED07);
+  da:	ad 98       	cbi	0x15, 5	; 21
+   //~ delay_ms(delay);
+
+   pin_high(LED08);
+  dc:	90 9a       	sbi	0x12, 0	; 18
+   delay_ms(delay);
+  de:	8a ef       	ldi	r24, 0xFA	; 250
+  e0:	90 e0       	ldi	r25, 0x00	; 0
+  e2:	0e 94 36 00 	call	0x6c	; 0x6c <delay_ms>
+   pin_low(LED08);
+  e6:	90 98       	cbi	0x12, 0	; 18
+   //~ delay_ms(delay);
+
+   pin_high(LED09);
+  e8:	ac 9a       	sbi	0x15, 4	; 21
+   delay_ms(delay);
+  ea:	8a ef       	ldi	r24, 0xFA	; 250
+  ec:	90 e0       	ldi	r25, 0x00	; 0
+  ee:	0e 94 36 00 	call	0x6c	; 0x6c <delay_ms>
+   pin_low(LED09);
+  f2:	ac 98       	cbi	0x15, 4	; 21
+   //~ delay_ms(delay);
+
+   pin_high(LED10);
+  f4:	91 9a       	sbi	0x12, 1	; 18
+   delay_ms(delay);
+  f6:	8a ef       	ldi	r24, 0xFA	; 250
+  f8:	90 e0       	ldi	r25, 0x00	; 0
+  fa:	0e 94 36 00 	call	0x6c	; 0x6c <delay_ms>
+   pin_low(LED10);
+  fe:	91 98       	cbi	0x12, 1	; 18
+   //~ delay_ms(delay);
+
+   pin_high(LED11);
+ 100:	ab 9a       	sbi	0x15, 3	; 21
+   delay_ms(delay);
+ 102:	8a ef       	ldi	r24, 0xFA	; 250
+ 104:	90 e0       	ldi	r25, 0x00	; 0
+ 106:	0e 94 36 00 	call	0x6c	; 0x6c <delay_ms>
+   pin_low(LED11);
+ 10a:	ab 98       	cbi	0x15, 3	; 21
+   //~ delay_ms(delay);
+
+   pin_high(LED12);
+ 10c:	92 9a       	sbi	0x12, 2	; 18
+   delay_ms(delay);
+ 10e:	8a ef       	ldi	r24, 0xFA	; 250
+ 110:	90 e0       	ldi	r25, 0x00	; 0
+ 112:	0e 94 36 00 	call	0x6c	; 0x6c <delay_ms>
+   pin_low(LED12);
+ 116:	92 98       	cbi	0x12, 2	; 18
+   //~ delay_ms(delay);
+
+   pin_high(LED13);
+ 118:	aa 9a       	sbi	0x15, 2	; 21
+   delay_ms(delay);
+ 11a:	8a ef       	ldi	r24, 0xFA	; 250
+ 11c:	90 e0       	ldi	r25, 0x00	; 0
+ 11e:	0e 94 36 00 	call	0x6c	; 0x6c <delay_ms>
+   pin_low(LED13);
+ 122:	aa 98       	cbi	0x15, 2	; 21
+   //~ delay_ms(delay);
+
+   pin_high(LED14);
+ 124:	93 9a       	sbi	0x12, 3	; 18
+   delay_ms(delay);
+ 126:	8a ef       	ldi	r24, 0xFA	; 250
+ 128:	90 e0       	ldi	r25, 0x00	; 0
+ 12a:	0e 94 36 00 	call	0x6c	; 0x6c <delay_ms>
+   pin_low(LED14);
+ 12e:	93 98       	cbi	0x12, 3	; 18
+   //~ delay_ms(delay);
+
+   pin_high(LED15);
+ 130:	a9 9a       	sbi	0x15, 1	; 21
+   delay_ms(delay);
+ 132:	8a ef       	ldi	r24, 0xFA	; 250
+ 134:	90 e0       	ldi	r25, 0x00	; 0
+ 136:	0e 94 36 00 	call	0x6c	; 0x6c <delay_ms>
+   pin_low(LED15);
+ 13a:	a9 98       	cbi	0x15, 1	; 21
+   //~ delay_ms(delay);
+
+   pin_high(LED16);
+ 13c:	94 9a       	sbi	0x12, 4	; 18
+   delay_ms(delay);
+ 13e:	8a ef       	ldi	r24, 0xFA	; 250
+ 140:	90 e0       	ldi	r25, 0x00	; 0
+ 142:	0e 94 36 00 	call	0x6c	; 0x6c <delay_ms>
+   pin_low(LED16);
+ 146:	94 98       	cbi	0x12, 4	; 18
+   //~ delay_ms(delay);
+
+   pin_high(LED17);
+ 148:	a8 9a       	sbi	0x15, 0	; 21
+   delay_ms(delay);
+ 14a:	8a ef       	ldi	r24, 0xFA	; 250
+ 14c:	90 e0       	ldi	r25, 0x00	; 0
+ 14e:	0e 94 36 00 	call	0x6c	; 0x6c <delay_ms>
+   pin_low(LED17);
+ 152:	a8 98       	cbi	0x15, 0	; 21
+   //~ delay_ms(delay);
+
+   pin_high(LED18);
+ 154:	95 9a       	sbi	0x12, 5	; 18
+   delay_ms(delay);
+ 156:	8a ef       	ldi	r24, 0xFA	; 250
+ 158:	90 e0       	ldi	r25, 0x00	; 0
+ 15a:	0e 94 36 00 	call	0x6c	; 0x6c <delay_ms>
+   pin_low(LED18);
+ 15e:	95 98       	cbi	0x12, 5	; 18
+   //~ delay_ms(delay);
+
+   pin_high(LED19);
+ 160:	97 9a       	sbi	0x12, 7	; 18
+   delay_ms(delay);
+ 162:	8a ef       	ldi	r24, 0xFA	; 250
+ 164:	90 e0       	ldi	r25, 0x00	; 0
+ 166:	0e 94 36 00 	call	0x6c	; 0x6c <delay_ms>
+   pin_low(LED19);
+ 16a:	97 98       	cbi	0x12, 7	; 18
+   //~ delay_ms(delay);
+
+   pin_high(LED20);
+ 16c:	96 9a       	sbi	0x12, 6	; 18
+   delay_ms(delay);
+ 16e:	8a ef       	ldi	r24, 0xFA	; 250
+ 170:	90 e0       	ldi	r25, 0x00	; 0
+ 172:	0e 94 36 00 	call	0x6c	; 0x6c <delay_ms>
+   pin_low(LED20);
+ 176:	96 98       	cbi	0x12, 6	; 18
+ 178:	08 95       	ret
+
+0000017a <main>:
 
 int main(void)
 {
 
     // Define outputs
     DDRB = 0xff;
-  9c:	8f ef       	ldi	r24, 0xFF	; 255
-  9e:	87 bb       	out	0x17, r24	; 23
+ 17a:	8f ef       	ldi	r24, 0xFF	; 255
+ 17c:	87 bb       	out	0x17, r24	; 23
     DDRC = 0xFF;
-  a0:	84 bb       	out	0x14, r24	; 20
+ 17e:	84 bb       	out	0x14, r24	; 20
     DDRD = 0xFF;
-  a2:	81 bb       	out	0x11, r24	; 17
+ 180:	81 bb       	out	0x11, r24	; 17
 
     // Initialize all outputs as low.
     PORTB = 0;
-  a4:	18 ba       	out	0x18, r1	; 24
+ 182:	18 ba       	out	0x18, r1	; 24
     PORTC = 0;
-  a6:	15 ba       	out	0x15, r1	; 21
+ 184:	15 ba       	out	0x15, r1	; 21
     PORTD = 0;
-  a8:	12 ba       	out	0x12, r1	; 18
+ 186:	12 ba       	out	0x12, r1	; 18
+
     // Output test run
+    lamptest();
+ 188:	0e 94 44 00 	call	0x88	; 0x88 <lamptest>
+ 18c:	ff cf       	rjmp	.-2      	; 0x18c <main+0x12>
 
+0000018e <_exit>:
+ 18e:	f8 94       	cli
 
-    // Endless loop
-    while(1) {
-        lamptest();
-  aa:	0e 94 44 00 	call	0x88	; 0x88 <lamptest>
-  ae:	fd cf       	rjmp	.-6      	; 0xaa <main+0xe>
-
-000000b0 <_exit>:
-  b0:	f8 94       	cli
-
-000000b2 <__stop_program>:
-  b2:	ff cf       	rjmp	.-2      	; 0xb2 <__stop_program>
+00000190 <__stop_program>:
+ 190:	ff cf       	rjmp	.-2      	; 0x190 <__stop_program>

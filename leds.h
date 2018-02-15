@@ -30,107 +30,107 @@
 
 
 void lamptest() {
-   int delay = 500;
+   int delay = 250;
 
    pin_high(LED01);
    delay_ms(delay);
    pin_low(LED01);
-   delay_ms(delay);
+   //~ delay_ms(delay);
 
    pin_high(LED02);
    delay_ms(delay);
    pin_low(LED02);
-   delay_ms(delay);
-//~
+   //~ delay_ms(delay);
+
    pin_high(LED03);
    delay_ms(delay);
    pin_low(LED03);
-   delay_ms(delay);
-//~ //~
+   //~ delay_ms(delay);
+
    pin_high(LED04);
    delay_ms(delay);
    pin_low(LED04);
-   delay_ms(delay);
-//~ //~
+   //~ delay_ms(delay);
+
    pin_high(LED05);
    delay_ms(delay);
    pin_low(LED05);
-   delay_ms(delay);
-//~ //~
+   //~ delay_ms(delay);
+
    pin_high(LED06);
    delay_ms(delay);
    pin_low(LED06);
-   delay_ms(delay);
-//~ //~
+   //~ delay_ms(delay);
+
    pin_high(LED07);
    delay_ms(delay);
    pin_low(LED07);
-   delay_ms(delay);
-//~ //~
+   //~ delay_ms(delay);
+
    pin_high(LED08);
    delay_ms(delay);
    pin_low(LED08);
-   delay_ms(delay);
-//~ //~
+   //~ delay_ms(delay);
+
    pin_high(LED09);
    delay_ms(delay);
    pin_low(LED09);
-   delay_ms(delay);
-//~ //~
+   //~ delay_ms(delay);
+
    pin_high(LED10);
    delay_ms(delay);
    pin_low(LED10);
-   delay_ms(delay);
-//~ //~
+   //~ delay_ms(delay);
+
    pin_high(LED11);
    delay_ms(delay);
    pin_low(LED11);
-   delay_ms(delay);
-//~ //~
+   //~ delay_ms(delay);
+
    pin_high(LED12);
    delay_ms(delay);
    pin_low(LED12);
-   delay_ms(delay);
-//~ //~
+   //~ delay_ms(delay);
+
    pin_high(LED13);
    delay_ms(delay);
    pin_low(LED13);
-   delay_ms(delay);
-//~ //~
+   //~ delay_ms(delay);
+
    pin_high(LED14);
    delay_ms(delay);
    pin_low(LED14);
-   delay_ms(delay);
-//~ //~
+   //~ delay_ms(delay);
+
    pin_high(LED15);
    delay_ms(delay);
    pin_low(LED15);
-   delay_ms(delay);
-//~ //~
+   //~ delay_ms(delay);
+
    pin_high(LED16);
    delay_ms(delay);
    pin_low(LED16);
-   delay_ms(delay);
-//~ //~
+   //~ delay_ms(delay);
+
    pin_high(LED17);
    delay_ms(delay);
    pin_low(LED17);
-   delay_ms(delay);
-//~ //~
+   //~ delay_ms(delay);
+
    pin_high(LED18);
    delay_ms(delay);
    pin_low(LED18);
-   delay_ms(delay);
-//~ //~
+   //~ delay_ms(delay);
+
    pin_high(LED19);
    delay_ms(delay);
    pin_low(LED19);
-   delay_ms(delay);
-//~ //~
+   //~ delay_ms(delay);
+
    pin_high(LED20);
    delay_ms(delay);
    pin_low(LED20);
-   delay_ms(delay);
+   //~ delay_ms(delay);
 }
 
 // EOF
