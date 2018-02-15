@@ -248,11 +248,76 @@
   48 001a 0895      		ret
   49               		.cfi_endproc
   50               	.LFE6:
-  52               		.section	.text.startup,"ax",@progbits
-  53               	.global	main
-  55               	main:
-  56               	.LFB7:
-  57               		.file 3 "main.c"
+  52               	.global	lamptest
+  54               	lamptest:
+  55               	.LFB7:
+  56               		.file 3 "leds.h"
+   1:leds.h        **** /*
+   2:leds.h        ****  * leds.h
+   3:leds.h        ****  *
+   4:leds.h        ****  * Defines functions to set and reset specific LED's.
+   5:leds.h        ****  *
+   6:leds.h        ****  */
+   7:leds.h        **** 
+   8:leds.h        **** 
+   9:leds.h        **** #define LED01 B, PB0   // LED01, red
+  10:leds.h        **** #define LED02 B, PB1   // LED02, red
+  11:leds.h        **** #define LED03 B, PB2   // LED03, red
+  12:leds.h        **** #define LED04 B, PB3   // LED04, red
+  13:leds.h        **** #define LED05 C, PC7   // LED05, red
+  14:leds.h        **** #define LED06 C, PC6   // LED06, yellow
+  15:leds.h        **** #define LED07 C, PC5   // LED07, yellow
+  16:leds.h        **** #define LED08 D, PD0   // LED08, yellow
+  17:leds.h        **** #define LED09 C, PC4   // LED09, yellow
+  18:leds.h        **** #define LED10 D, PD1   // LED10, yellow
+  19:leds.h        **** #define LED11 C, PC3   // LED11, green
+  20:leds.h        **** #define LED12 D, PD2   // LED12, green
+  21:leds.h        **** #define LED13 C, PC2   // LED13, green
+  22:leds.h        **** #define LED14 D, PD3   // LED14, green
+  23:leds.h        **** #define LED15 C, PC1   // LED15, green
+  24:leds.h        **** #define LED16 D, PD4   // LED16, green
+  25:leds.h        **** #define LED17 C, PC0   // LED17, green
+  26:leds.h        **** #define LED18 D, PD5   // LED18, green
+  27:leds.h        **** #define LED19 D, PD7   // LED19, green
+  28:leds.h        **** #define LED20 D, PD6   // LED20, green
+  29:leds.h        **** 
+  30:leds.h        **** 
+  31:leds.h        **** 
+  32:leds.h        **** void lamptest() {
+  57               		.loc 3 32 0
+  58               		.cfi_startproc
+  59               	/* prologue: function */
+  60               	/* frame size = 0 */
+  61               	/* stack size = 0 */
+  62               	.L__stack_usage = 0
+  63               	.LVL3:
+  33:leds.h        ****    int delay = 500;
+  34:leds.h        **** 
+  35:leds.h        ****    pin_high(LED01);
+  64               		.loc 3 35 0
+  65 001c C09A      		sbi 0x18,0
+  36:leds.h        ****    delay_ms(delay);
+  66               		.loc 3 36 0
+  67 001e 84EF      		ldi r24,lo8(-12)
+  68 0020 91E0      		ldi r25,lo8(1)
+  69 0022 0E94 0000 		call delay_ms
+  70               	.LVL4:
+  37:leds.h        ****    pin_low(LED01);
+  71               		.loc 3 37 0
+  72 0026 C098      		cbi 0x18,0
+  38:leds.h        ****    delay_ms(delay);
+  73               		.loc 3 38 0
+  74 0028 84EF      		ldi r24,lo8(-12)
+  75 002a 91E0      		ldi r25,lo8(1)
+  76 002c 0C94 0000 		jmp delay_ms
+  77               	.LVL5:
+  78               		.cfi_endproc
+  79               	.LFE7:
+  81               		.section	.text.startup,"ax",@progbits
+  82               	.global	main
+  84               	main:
+  85               	.LFB8:
+  86               		.file 4 "main.c"
    1:main.c        **** /*
    2:main.c        ****  * main.c
    3:main.c        ****  *
@@ -290,78 +355,61 @@
   35:main.c        **** 
   36:main.c        **** int main(void)
   37:main.c        **** {
-  58               		.loc 3 37 0
-  59               		.cfi_startproc
-  60               	/* prologue: function */
-  61               	/* frame size = 0 */
-  62               	/* stack size = 0 */
-  63               	.L__stack_usage = 0
+  87               		.loc 4 37 0
+  88               		.cfi_startproc
+  89               	/* prologue: function */
+  90               	/* frame size = 0 */
+  91               	/* stack size = 0 */
+  92               	.L__stack_usage = 0
   38:main.c        **** 
   39:main.c        ****     // Define outputs
   40:main.c        ****     DDRB = 0xff;
-  64               		.loc 3 40 0
-  65 0000 8FEF      		ldi r24,lo8(-1)
-  66 0002 87BB      		out 0x17,r24
+  93               		.loc 4 40 0
+  94 0000 8FEF      		ldi r24,lo8(-1)
+  95 0002 87BB      		out 0x17,r24
   41:main.c        ****     DDRC = 0xFF;
-  67               		.loc 3 41 0
-  68 0004 84BB      		out 0x14,r24
+  96               		.loc 4 41 0
+  97 0004 84BB      		out 0x14,r24
   42:main.c        ****     DDRD = 0xFF;
-  69               		.loc 3 42 0
-  70 0006 81BB      		out 0x11,r24
+  98               		.loc 4 42 0
+  99 0006 81BB      		out 0x11,r24
   43:main.c        **** 
   44:main.c        ****     // Initialize all outputs as low.
   45:main.c        ****     PORTB = 0;
-  71               		.loc 3 45 0
-  72 0008 18BA      		out 0x18,__zero_reg__
+ 100               		.loc 4 45 0
+ 101 0008 18BA      		out 0x18,__zero_reg__
   46:main.c        ****     PORTC = 0;
-  73               		.loc 3 46 0
-  74 000a 15BA      		out 0x15,__zero_reg__
+ 102               		.loc 4 46 0
+ 103 000a 15BA      		out 0x15,__zero_reg__
   47:main.c        ****     PORTD = 0;
-  75               		.loc 3 47 0
-  76 000c 12BA      		out 0x12,__zero_reg__
-  77               	.L6:
+ 104               		.loc 4 47 0
+ 105 000c 12BA      		out 0x12,__zero_reg__
+ 106               	.L7:
   48:main.c        **** 
   49:main.c        ****     // Output test run
-  50:main.c        ****     //~ lamptest();
-  51:main.c        ****     //~ setLED(1);
-  52:main.c        **** 
-  53:main.c        **** 
-  54:main.c        ****     // Endless loop
-  55:main.c        ****     while(1) {
-  56:main.c        ****         //~ PORTB |= (1<<PB0);
-  57:main.c        ****         pin_high(LED01);
-  78               		.loc 3 57 0 discriminator 1
-  79 000e C09A      		sbi 0x18,0
-  58:main.c        ****         delay_ms(1000);
-  80               		.loc 3 58 0 discriminator 1
-  81 0010 88EE      		ldi r24,lo8(-24)
-  82 0012 93E0      		ldi r25,lo8(3)
-  83 0014 0E94 0000 		call delay_ms
-  84               	.LVL3:
-  59:main.c        ****         //~ PORTB &= ~(1<<PB0);
-  60:main.c        ****         pin_low(LED01);
-  85               		.loc 3 60 0 discriminator 1
-  86 0018 C098      		cbi 0x18,0
-  61:main.c        ****         delay_ms(1000);
-  87               		.loc 3 61 0 discriminator 1
-  88 001a 88EE      		ldi r24,lo8(-24)
-  89 001c 93E0      		ldi r25,lo8(3)
-  90 001e 0E94 0000 		call delay_ms
-  91               	.LVL4:
-  92 0022 00C0      		rjmp .L6
-  93               		.cfi_endproc
-  94               	.LFE7:
-  96               		.text
-  97               	.Letext0:
-  98               		.file 4 "/usr/lib/avr/include/stdint.h"
+  50:main.c        **** 
+  51:main.c        **** 
+  52:main.c        ****     // Endless loop
+  53:main.c        ****     while(1) {
+  54:main.c        ****         lamptest();
+ 107               		.loc 4 54 0 discriminator 1
+ 108 000e 0E94 0000 		call lamptest
+ 109               	.LVL6:
+ 110 0012 00C0      		rjmp .L7
+ 111               		.cfi_endproc
+ 112               	.LFE8:
+ 114               		.text
+ 115               	.Letext0:
+ 116               		.file 5 "/usr/lib/avr/include/stdint.h"
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 main.c
-     /tmp/ccD5ZuZJ.s:2      *ABS*:000000000000003e __SP_H__
-     /tmp/ccD5ZuZJ.s:3      *ABS*:000000000000003d __SP_L__
-     /tmp/ccD5ZuZJ.s:4      *ABS*:000000000000003f __SREG__
-     /tmp/ccD5ZuZJ.s:5      *ABS*:0000000000000000 __tmp_reg__
-     /tmp/ccD5ZuZJ.s:6      *ABS*:0000000000000001 __zero_reg__
-     /tmp/ccD5ZuZJ.s:12     .text:0000000000000000 delay_ms
-     /tmp/ccD5ZuZJ.s:55     .text.startup:0000000000000000 main
+     /tmp/ccWTMuQG.s:2      *ABS*:000000000000003e __SP_H__
+     /tmp/ccWTMuQG.s:3      *ABS*:000000000000003d __SP_L__
+     /tmp/ccWTMuQG.s:4      *ABS*:000000000000003f __SREG__
+     /tmp/ccWTMuQG.s:5      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/ccWTMuQG.s:6      *ABS*:0000000000000001 __zero_reg__
+     /tmp/ccWTMuQG.s:12     .text:0000000000000000 delay_ms
+     /tmp/ccWTMuQG.s:54     .text:000000000000001c lamptest
+     /tmp/ccWTMuQG.s:84     .text.startup:0000000000000000 main
 
 NO UNDEFINED SYMBOLS

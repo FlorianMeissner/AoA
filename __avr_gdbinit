@@ -1,0 +1,7 @@
+define reset
+SIGNAL SIGHUP
+end
+file ./build/main.elf
+target remote localhost:4242
+load
+break main

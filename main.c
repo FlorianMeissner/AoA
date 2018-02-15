@@ -28,11 +28,6 @@
 #include "leds.h"
 
 
-#define LED B,PB1
-
-
-
-
 int main(void)
 {
 
@@ -47,18 +42,11 @@ int main(void)
     PORTD = 0;
 
     // Output test run
-    //~ lamptest();
-    //~ setLED(1);
 
 
     // Endless loop
     while(1) {
-        //~ PORTB |= (1<<PB0);
-        pin_high(LED01);
-        delay_ms(1000);
-        //~ PORTB &= ~(1<<PB0);
-        pin_low(LED01);
-        delay_ms(1000);
+        lamptest();
     }
     return 0;
 }
