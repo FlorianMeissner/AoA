@@ -15,7 +15,7 @@
 * -----------
 *
 * Developer:    Florian Meissner
-*               florianmeissner@gmx.de
+*               n1990b@gmx.de
 * Version:      1.1
 * Release date: 05/05/2017
 *
