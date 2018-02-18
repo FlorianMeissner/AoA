@@ -1,0 +1,15 @@
+#
+# .gitignore
+#
+#
+# Files ignored from GIT version control
+#
+#
+# Florian Meissner
+# n1990b@gmx.de
+# February 2018
+#
+#
+#
+
+*_conflict-*
