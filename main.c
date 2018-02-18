@@ -26,9 +26,9 @@
 #include "io.h"
 #include "leds.h"
 //~ #include "adc.h"
-//~ #include "version.h"
+#include "version.h"
 
-//~ #define VERSION 1.0 // Program version
+#define VERSION 1.0 // Program version
 //~ #define SENSOR 0    // ADC channel
 
 
@@ -45,7 +45,7 @@ int main(void)
 
     // Output test run
     lamptest();
-    //~ version(VERSION);
+    version(VERSION);
 
     // Endless loop
     while(1) {

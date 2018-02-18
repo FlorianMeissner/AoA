@@ -29,11 +29,14 @@ long_line_column=72
 
 [files]
 current_page=0
-FILE_NAME_0=786;C;0;EUTF-8;0;1;1;%2Fhome%2Fflorian%2FFliegerei%2FMotorflug%2FFlugzeug%2FMaintenance%2Faoa%2FSoftware%2Fmain.c;0;4
-FILE_NAME_1=0;C;0;EUTF-8;0;1;1;%2Fhome%2Fflorian%2FFliegerei%2FMotorflug%2FFlugzeug%2FMaintenance%2Faoa%2FSoftware%2Fdelay_ms.h;0;4
-FILE_NAME_2=2034;Make;0;EISO-8859-1;1;1;1;%2Fhome%2Fflorian%2FFliegerei%2FMotorflug%2FFlugzeug%2FMaintenance%2Faoa%2FSoftware%2FMakefile;0;4
+FILE_NAME_0=655;C;0;EUTF-8;0;1;1;%2Fhome%2Fflorian%2FFliegerei%2FMotorflug%2FFlugzeug%2FMaintenance%2Faoa%2FSoftware%2Fmain.c;0;4
+FILE_NAME_1=356;C;0;EUTF-8;0;1;1;%2Fhome%2Fflorian%2FFliegerei%2FMotorflug%2FFlugzeug%2FMaintenance%2Faoa%2FSoftware%2Fdelay_ms.h;0;4
+FILE_NAME_2=11820;Make;0;EISO-8859-1;1;1;1;%2Fhome%2Fflorian%2FFliegerei%2FMotorflug%2FFlugzeug%2FMaintenance%2Faoa%2FSoftware%2FMakefile;0;4
 FILE_NAME_3=0;C;0;EUTF-8;0;1;1;%2Fhome%2Fflorian%2FFliegerei%2FMotorflug%2FFlugzeug%2FMaintenance%2Faoa%2FSoftware%2Fio.h;0;4
-FILE_NAME_4=892;C;0;EUTF-8;0;1;1;%2Fhome%2Fflorian%2FFliegerei%2FMotorflug%2FFlugzeug%2FMaintenance%2Faoa%2FSoftware%2Fleds.h;0;4
+FILE_NAME_4=136;None;0;EUTF-8;0;1;1;%2Fhome%2Fflorian%2FFliegerei%2FMotorflug%2FFlugzeug%2FMaintenance%2Faoa%2FSoftware%2F.gitignore;0;4
+FILE_NAME_5=0;C;0;EUTF-8;0;1;1;%2Fhome%2Fflorian%2FFliegerei%2FMotorflug%2FFlugzeug%2FMaintenance%2Faoa%2FSoftware%2Fleds.h;0;4
+FILE_NAME_6=442;C;0;EUTF-8;0;1;1;%2Fhome%2Fflorian%2FFliegerei%2FMotorflug%2FFlugzeug%2FMaintenance%2Faoa%2FSoftware%2Fversion.h;0;4
+FILE_NAME_7=0;None;0;EUTF-8;0;1;1;%2Fhome%2Fflorian%2FFliegerei%2FMotorflug%2FFlugzeug%2FMaintenance%2Faoa%2FSoftware%2F__avr_gdbinit;0;4
 
 [build-menu]
 CFT_00_LB=_Compile
