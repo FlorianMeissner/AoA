@@ -30,7 +30,7 @@
 #include "version.h"
 
 
-#define VERSION 1.1 // Program version
+#define VERSION 1.2 // Program version
 #define SENSOR 7    // ADC channel
 
 

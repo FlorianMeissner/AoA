@@ -51,7 +51,7 @@ void ADC_init(void)
 /**
     @brief  Read one value from specified channel.
     @param  uint8_t channel
-    @retrun uint16_t adc_conversion
+    @return uint16_t adc_conversion
 **/
 uint16_t ADC_Read(uint8_t channel)
 {

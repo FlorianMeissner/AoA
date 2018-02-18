@@ -449,7 +449,7 @@ void ADC_init(void)
  214:	08 95       	ret
 
 00000216 <ADC_Read>:
-    @retrun uint16_t adc_conversion
+    @return uint16_t adc_conversion
 **/
 uint16_t ADC_Read(uint8_t channel)
 {
@@ -701,9 +701,9 @@ int main(void)
     lamptest();
  35c:	0e 94 83 00 	call	0x106	; 0x106 <lamptest>
     version(VERSION);
- 360:	6d ec       	ldi	r22, 0xCD	; 205
- 362:	7c ec       	ldi	r23, 0xCC	; 204
- 364:	8c e8       	ldi	r24, 0x8C	; 140
+ 360:	6a e9       	ldi	r22, 0x9A	; 154
+ 362:	79 e9       	ldi	r23, 0x99	; 153
+ 364:	89 e9       	ldi	r24, 0x99	; 153
  366:	9f e3       	ldi	r25, 0x3F	; 63
  368:	0e 94 46 01 	call	0x28c	; 0x28c <version>
 

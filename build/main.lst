@@ -859,7 +859,7 @@
   51:adc.h         **** /**
   52:adc.h         ****     @brief  Read one value from specified channel.
   53:adc.h         ****     @param  uint8_t channel
-  54:adc.h         ****     @retrun uint16_t adc_conversion
+  54:adc.h         ****     @return uint16_t adc_conversion
   55:adc.h         **** **/
   56:adc.h         **** uint16_t ADC_Read(uint8_t channel)
   57:adc.h         **** {
@@ -1336,7 +1336,7 @@
   30:main.c        **** #include "version.h"
   31:main.c        **** 
   32:main.c        **** 
-  33:main.c        **** #define VERSION 1.1 // Program version
+  33:main.c        **** #define VERSION 1.2 // Program version
   34:main.c        **** #define SENSOR 7    // ADC channel
   35:main.c        **** 
   36:main.c        **** 
@@ -1370,9 +1370,9 @@
  776               	.LVL51:
   50:main.c        ****     version(VERSION);
  777               		.loc 6 50 0
- 778 000c 6DEC      		ldi r22,lo8(-51)
- 779 000e 7CEC      		ldi r23,lo8(-52)
- 780 0010 8CE8      		ldi r24,lo8(-116)
+ 778 000c 6AE9      		ldi r22,lo8(-102)
+ 779 000e 79E9      		ldi r23,lo8(-103)
+ 780 0010 89E9      		ldi r24,lo8(-103)
  781 0012 9FE3      		ldi r25,lo8(63)
  782 0014 0E94 0000 		call version
  783               	.LVL52:
@@ -1644,20 +1644,20 @@
  1016               		.file 7 "/usr/lib/avr/include/stdint.h"
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 main.c
-     /tmp/ccH3edfc.s:2      *ABS*:000000000000003e __SP_H__
-     /tmp/ccH3edfc.s:3      *ABS*:000000000000003d __SP_L__
-     /tmp/ccH3edfc.s:4      *ABS*:000000000000003f __SREG__
-     /tmp/ccH3edfc.s:5      *ABS*:0000000000000000 __tmp_reg__
-     /tmp/ccH3edfc.s:6      *ABS*:0000000000000001 __zero_reg__
-     /tmp/ccH3edfc.s:12     .text:0000000000000000 delay_ms
-     /tmp/ccH3edfc.s:54     .text:000000000000001c LED_reset
-     /tmp/ccH3edfc.s:109    .text:0000000000000046 LED_init
-     /tmp/ccH3edfc.s:165    .text:0000000000000072 lamptest
-     /tmp/ccH3edfc.s:360    .text:0000000000000164 ADC_init
-     /tmp/ccH3edfc.s:401    .text:0000000000000182 ADC_Read
-     /tmp/ccH3edfc.s:433    .text:0000000000000198 ADC_Read_Avg
-     /tmp/ccH3edfc.s:548    .text:00000000000001f8 version
-     /tmp/ccH3edfc.s:759    .text.startup:0000000000000000 main
+     /tmp/cc4spfWI.s:2      *ABS*:000000000000003e __SP_H__
+     /tmp/cc4spfWI.s:3      *ABS*:000000000000003d __SP_L__
+     /tmp/cc4spfWI.s:4      *ABS*:000000000000003f __SREG__
+     /tmp/cc4spfWI.s:5      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/cc4spfWI.s:6      *ABS*:0000000000000001 __zero_reg__
+     /tmp/cc4spfWI.s:12     .text:0000000000000000 delay_ms
+     /tmp/cc4spfWI.s:54     .text:000000000000001c LED_reset
+     /tmp/cc4spfWI.s:109    .text:0000000000000046 LED_init
+     /tmp/cc4spfWI.s:165    .text:0000000000000072 lamptest
+     /tmp/cc4spfWI.s:360    .text:0000000000000164 ADC_init
+     /tmp/cc4spfWI.s:401    .text:0000000000000182 ADC_Read
+     /tmp/cc4spfWI.s:433    .text:0000000000000198 ADC_Read_Avg
+     /tmp/cc4spfWI.s:548    .text:00000000000001f8 version
+     /tmp/cc4spfWI.s:759    .text.startup:0000000000000000 main
 
 UNDEFINED SYMBOLS
 __udivmodsi4
