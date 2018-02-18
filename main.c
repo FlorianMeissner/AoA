@@ -23,30 +23,33 @@
 #include <avr/io.h>
 #include <stdint.h>
 #include "delay_ms.h"
-//~ #include "bool.h"
 #include "io.h"
 #include "leds.h"
+//~ #include "adc.h"
+//~ #include "version.h"
+
+//~ #define VERSION 1.0 // Program version
+//~ #define SENSOR 0    // ADC channel
 
 
+/**
+    @brief  Main program
+    @param  none
+    @return int
+**/
 int main(void)
 {
-
-    // Define outputs
-    DDRB = 0xff;
-    DDRC = 0xFF;
-    DDRD = 0xFF;
-
-    // Initialize all outputs as low.
-    PORTB = 0;
-    PORTC = 0;
-    PORTD = 0;
+    //Initializers
+    LED_init();     // LED's
+    //~ ADC_init();     // ADC
 
     // Output test run
     lamptest();
-
+    //~ version(VERSION);
 
     // Endless loop
     while(1) {
+        //~ adcval = ADC_Read_Avg(SENSOR, 10);
     }
     return 0;
 }

@@ -8,7 +8,7 @@
 * ------------
 *
 * The function calls the original _delay_ms() from util/delay.h for 1
-* milisecond and repeats that for the desired timespan.
+* millisecond and repeats that for the desired timespan.
 *
 *
 * SITE NOTICE
@@ -21,7 +21,9 @@
 *
 */
 
+
 #include <util/delay.h>
+
 
 /**
     @brief  Delay program execution.

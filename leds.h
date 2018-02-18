@@ -1,7 +1,15 @@
 /*
  * leds.h
  *
+ * LED definitions
+ * ===============
+ *
  * Defines functions to set and reset specific LED's.
+ *
+ *
+ * Florian Meissner
+ * n1990b@gmx.de
+ * February 2018
  *
  */
 
@@ -28,109 +36,160 @@
 #define LED20 D, PD6   // LED20, green
 
 
+// Prototype declarations
+void LED_reset(void);
+void LED_init(void);
 
-void lamptest() {
+
+/**
+    @brief  Initialize all LED outputs.
+    @param  none
+    @return none
+**/
+void LED_init(void)
+{
+    set_dir_out(LED01);
+    set_dir_out(LED02);
+    set_dir_out(LED03);
+    set_dir_out(LED04);
+    set_dir_out(LED05);
+    set_dir_out(LED06);
+    set_dir_out(LED07);
+    set_dir_out(LED08);
+    set_dir_out(LED09);
+    set_dir_out(LED10);
+    set_dir_out(LED11);
+    set_dir_out(LED12);
+    set_dir_out(LED13);
+    set_dir_out(LED14);
+    set_dir_out(LED15);
+    set_dir_out(LED16);
+    set_dir_out(LED17);
+    set_dir_out(LED18);
+    set_dir_out(LED19);
+    set_dir_out(LED20);
+
+    LED_reset();
+}
+
+
+/**
+    @brief  Reset all LED's to 0
+    @param  none
+    @return none
+**/
+void LED_reset(void)
+{
+    pin_low(LED01);
+    pin_low(LED02);
+    pin_low(LED03);
+    pin_low(LED04);
+    pin_low(LED05);
+    pin_low(LED06);
+    pin_low(LED07);
+    pin_low(LED08);
+    pin_low(LED09);
+    pin_low(LED10);
+    pin_low(LED11);
+    pin_low(LED12);
+    pin_low(LED13);
+    pin_low(LED14);
+    pin_low(LED15);
+    pin_low(LED16);
+    pin_low(LED17);
+    pin_low(LED18);
+    pin_low(LED19);
+    pin_low(LED20);
+}
+
+
+/**
+    @brief  Flash all LED's in series.
+    @param  none
+    @return none
+*/
+void lamptest(void) {
    int delay = 250;
 
    pin_high(LED01);
    delay_ms(delay);
    pin_low(LED01);
-   //~ delay_ms(delay);
 
    pin_high(LED02);
    delay_ms(delay);
    pin_low(LED02);
-   //~ delay_ms(delay);
 
    pin_high(LED03);
    delay_ms(delay);
    pin_low(LED03);
-   //~ delay_ms(delay);
 
    pin_high(LED04);
    delay_ms(delay);
    pin_low(LED04);
-   //~ delay_ms(delay);
 
    pin_high(LED05);
    delay_ms(delay);
    pin_low(LED05);
-   //~ delay_ms(delay);
 
    pin_high(LED06);
    delay_ms(delay);
    pin_low(LED06);
-   //~ delay_ms(delay);
 
    pin_high(LED07);
    delay_ms(delay);
    pin_low(LED07);
-   //~ delay_ms(delay);
 
    pin_high(LED08);
    delay_ms(delay);
    pin_low(LED08);
-   //~ delay_ms(delay);
 
    pin_high(LED09);
    delay_ms(delay);
    pin_low(LED09);
-   //~ delay_ms(delay);
 
    pin_high(LED10);
    delay_ms(delay);
    pin_low(LED10);
-   //~ delay_ms(delay);
 
    pin_high(LED11);
    delay_ms(delay);
    pin_low(LED11);
-   //~ delay_ms(delay);
 
    pin_high(LED12);
    delay_ms(delay);
    pin_low(LED12);
-   //~ delay_ms(delay);
 
    pin_high(LED13);
    delay_ms(delay);
    pin_low(LED13);
-   //~ delay_ms(delay);
 
    pin_high(LED14);
    delay_ms(delay);
    pin_low(LED14);
-   //~ delay_ms(delay);
 
    pin_high(LED15);
    delay_ms(delay);
    pin_low(LED15);
-   //~ delay_ms(delay);
 
    pin_high(LED16);
    delay_ms(delay);
    pin_low(LED16);
-   //~ delay_ms(delay);
 
    pin_high(LED17);
    delay_ms(delay);
    pin_low(LED17);
-   //~ delay_ms(delay);
 
    pin_high(LED18);
    delay_ms(delay);
    pin_low(LED18);
-   //~ delay_ms(delay);
 
    pin_high(LED19);
    delay_ms(delay);
    pin_low(LED19);
-   //~ delay_ms(delay);
 
    pin_high(LED20);
    delay_ms(delay);
    pin_low(LED20);
-   //~ delay_ms(delay);
 }
 
 // EOF

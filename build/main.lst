@@ -248,337 +248,520 @@
   48 001a 0895      		ret
   49               		.cfi_endproc
   50               	.LFE6:
-  52               	.global	lamptest
-  54               	lamptest:
-  55               	.LFB7:
+  52               	.global	LED_reset
+  54               	LED_reset:
+  55               	.LFB8:
   56               		.file 3 "leds.h"
    1:leds.h        **** /*
    2:leds.h        ****  * leds.h
    3:leds.h        ****  *
-   4:leds.h        ****  * Defines functions to set and reset specific LED's.
-   5:leds.h        ****  *
-   6:leds.h        ****  */
-   7:leds.h        **** 
-   8:leds.h        **** 
-   9:leds.h        **** #define LED01 B, PB0   // LED01, red
-  10:leds.h        **** #define LED02 B, PB1   // LED02, red
-  11:leds.h        **** #define LED03 B, PB2   // LED03, red
-  12:leds.h        **** #define LED04 B, PB3   // LED04, red
-  13:leds.h        **** #define LED05 C, PC7   // LED05, red
-  14:leds.h        **** #define LED06 C, PC6   // LED06, yellow
-  15:leds.h        **** #define LED07 C, PC5   // LED07, yellow
-  16:leds.h        **** #define LED08 D, PD0   // LED08, yellow
-  17:leds.h        **** #define LED09 C, PC4   // LED09, yellow
-  18:leds.h        **** #define LED10 D, PD1   // LED10, yellow
-  19:leds.h        **** #define LED11 C, PC3   // LED11, green
-  20:leds.h        **** #define LED12 D, PD2   // LED12, green
-  21:leds.h        **** #define LED13 C, PC2   // LED13, green
-  22:leds.h        **** #define LED14 D, PD3   // LED14, green
-  23:leds.h        **** #define LED15 C, PC1   // LED15, green
-  24:leds.h        **** #define LED16 D, PD4   // LED16, green
-  25:leds.h        **** #define LED17 C, PC0   // LED17, green
-  26:leds.h        **** #define LED18 D, PD5   // LED18, green
-  27:leds.h        **** #define LED19 D, PD7   // LED19, green
-  28:leds.h        **** #define LED20 D, PD6   // LED20, green
-  29:leds.h        **** 
-  30:leds.h        **** 
-  31:leds.h        **** 
-  32:leds.h        **** void lamptest() {
-  57               		.loc 3 32 0
+   4:leds.h        ****  * LED definitions
+   5:leds.h        ****  * ===============
+   6:leds.h        ****  *
+   7:leds.h        ****  * Defines functions to set and reset specific LED's.
+   8:leds.h        ****  *
+   9:leds.h        ****  *
+  10:leds.h        ****  * Florian Meissner
+  11:leds.h        ****  * n1990b@gmx.de
+  12:leds.h        ****  * February 2018
+  13:leds.h        ****  *
+  14:leds.h        ****  */
+  15:leds.h        **** 
+  16:leds.h        **** 
+  17:leds.h        **** #define LED01 B, PB0   // LED01, red
+  18:leds.h        **** #define LED02 B, PB1   // LED02, red
+  19:leds.h        **** #define LED03 B, PB2   // LED03, red
+  20:leds.h        **** #define LED04 B, PB3   // LED04, red
+  21:leds.h        **** #define LED05 C, PC7   // LED05, red
+  22:leds.h        **** #define LED06 C, PC6   // LED06, yellow
+  23:leds.h        **** #define LED07 C, PC5   // LED07, yellow
+  24:leds.h        **** #define LED08 D, PD0   // LED08, yellow
+  25:leds.h        **** #define LED09 C, PC4   // LED09, yellow
+  26:leds.h        **** #define LED10 D, PD1   // LED10, yellow
+  27:leds.h        **** #define LED11 C, PC3   // LED11, green
+  28:leds.h        **** #define LED12 D, PD2   // LED12, green
+  29:leds.h        **** #define LED13 C, PC2   // LED13, green
+  30:leds.h        **** #define LED14 D, PD3   // LED14, green
+  31:leds.h        **** #define LED15 C, PC1   // LED15, green
+  32:leds.h        **** #define LED16 D, PD4   // LED16, green
+  33:leds.h        **** #define LED17 C, PC0   // LED17, green
+  34:leds.h        **** #define LED18 D, PD5   // LED18, green
+  35:leds.h        **** #define LED19 D, PD7   // LED19, green
+  36:leds.h        **** #define LED20 D, PD6   // LED20, green
+  37:leds.h        **** 
+  38:leds.h        **** 
+  39:leds.h        **** /**
+  40:leds.h        ****     @brief  Initialize all LED outputs.
+  41:leds.h        ****     @param  none
+  42:leds.h        ****     @return none
+  43:leds.h        **** **/
+  44:leds.h        **** void LED_init(void)
+  45:leds.h        **** {
+  46:leds.h        ****     set_dir_out(LED01);
+  47:leds.h        ****     set_dir_out(LED02);
+  48:leds.h        ****     set_dir_out(LED03);
+  49:leds.h        ****     set_dir_out(LED04);
+  50:leds.h        ****     set_dir_out(LED05);
+  51:leds.h        ****     set_dir_out(LED06);
+  52:leds.h        ****     set_dir_out(LED07);
+  53:leds.h        ****     set_dir_out(LED08);
+  54:leds.h        ****     set_dir_out(LED09);
+  55:leds.h        ****     set_dir_out(LED10);
+  56:leds.h        ****     set_dir_out(LED11);
+  57:leds.h        ****     set_dir_out(LED12);
+  58:leds.h        ****     set_dir_out(LED13);
+  59:leds.h        ****     set_dir_out(LED14);
+  60:leds.h        ****     set_dir_out(LED15);
+  61:leds.h        ****     set_dir_out(LED16);
+  62:leds.h        ****     set_dir_out(LED17);
+  63:leds.h        ****     set_dir_out(LED18);
+  64:leds.h        ****     set_dir_out(LED19);
+  65:leds.h        ****     set_dir_out(LED20);
+  66:leds.h        **** 
+  67:leds.h        ****     LED_reset();
+  68:leds.h        **** }
+  69:leds.h        **** 
+  70:leds.h        **** 
+  71:leds.h        **** /**
+  72:leds.h        ****     @brief  Reset all LED's to 0
+  73:leds.h        ****     @param  none
+  74:leds.h        ****     @return none
+  75:leds.h        **** **/
+  76:leds.h        **** void LED_reset(void)
+  77:leds.h        **** {
+  57               		.loc 3 77 0
   58               		.cfi_startproc
   59               	/* prologue: function */
   60               	/* frame size = 0 */
   61               	/* stack size = 0 */
   62               	.L__stack_usage = 0
-  63               	.LVL3:
-  33:leds.h        ****    int delay = 250;
-  34:leds.h        **** 
-  35:leds.h        ****    pin_high(LED01);
-  64               		.loc 3 35 0
-  65 001c C09A      		sbi 0x18,0
-  36:leds.h        ****    delay_ms(delay);
-  66               		.loc 3 36 0
-  67 001e 8AEF      		ldi r24,lo8(-6)
-  68 0020 90E0      		ldi r25,0
-  69 0022 0E94 0000 		call delay_ms
-  70               	.LVL4:
-  37:leds.h        ****    pin_low(LED01);
-  71               		.loc 3 37 0
-  72 0026 C098      		cbi 0x18,0
-  38:leds.h        ****    //~ delay_ms(delay);
-  39:leds.h        **** 
-  40:leds.h        ****    pin_high(LED02);
-  73               		.loc 3 40 0
-  74 0028 C19A      		sbi 0x18,1
-  41:leds.h        ****    delay_ms(delay);
-  75               		.loc 3 41 0
-  76 002a 8AEF      		ldi r24,lo8(-6)
-  77 002c 90E0      		ldi r25,0
-  78 002e 0E94 0000 		call delay_ms
-  79               	.LVL5:
-  42:leds.h        ****    pin_low(LED02);
-  80               		.loc 3 42 0
-  81 0032 C198      		cbi 0x18,1
-  43:leds.h        ****    //~ delay_ms(delay);
-  44:leds.h        **** 
-  45:leds.h        ****    pin_high(LED03);
-  82               		.loc 3 45 0
-  83 0034 C29A      		sbi 0x18,2
-  46:leds.h        ****    delay_ms(delay);
-  84               		.loc 3 46 0
-  85 0036 8AEF      		ldi r24,lo8(-6)
-  86 0038 90E0      		ldi r25,0
-  87 003a 0E94 0000 		call delay_ms
-  88               	.LVL6:
-  47:leds.h        ****    pin_low(LED03);
-  89               		.loc 3 47 0
-  90 003e C298      		cbi 0x18,2
-  48:leds.h        ****    //~ delay_ms(delay);
-  49:leds.h        **** 
-  50:leds.h        ****    pin_high(LED04);
-  91               		.loc 3 50 0
-  92 0040 C39A      		sbi 0x18,3
-  51:leds.h        ****    delay_ms(delay);
-  93               		.loc 3 51 0
-  94 0042 8AEF      		ldi r24,lo8(-6)
-  95 0044 90E0      		ldi r25,0
-  96 0046 0E94 0000 		call delay_ms
-  97               	.LVL7:
-  52:leds.h        ****    pin_low(LED04);
-  98               		.loc 3 52 0
-  99 004a C398      		cbi 0x18,3
-  53:leds.h        ****    //~ delay_ms(delay);
-  54:leds.h        **** 
-  55:leds.h        ****    pin_high(LED05);
- 100               		.loc 3 55 0
- 101 004c AF9A      		sbi 0x15,7
-  56:leds.h        ****    delay_ms(delay);
- 102               		.loc 3 56 0
- 103 004e 8AEF      		ldi r24,lo8(-6)
- 104 0050 90E0      		ldi r25,0
- 105 0052 0E94 0000 		call delay_ms
- 106               	.LVL8:
-  57:leds.h        ****    pin_low(LED05);
- 107               		.loc 3 57 0
- 108 0056 AF98      		cbi 0x15,7
-  58:leds.h        ****    //~ delay_ms(delay);
-  59:leds.h        **** 
-  60:leds.h        ****    pin_high(LED06);
- 109               		.loc 3 60 0
- 110 0058 AE9A      		sbi 0x15,6
-  61:leds.h        ****    delay_ms(delay);
- 111               		.loc 3 61 0
- 112 005a 8AEF      		ldi r24,lo8(-6)
- 113 005c 90E0      		ldi r25,0
- 114 005e 0E94 0000 		call delay_ms
- 115               	.LVL9:
-  62:leds.h        ****    pin_low(LED06);
- 116               		.loc 3 62 0
- 117 0062 AE98      		cbi 0x15,6
-  63:leds.h        ****    //~ delay_ms(delay);
-  64:leds.h        **** 
-  65:leds.h        ****    pin_high(LED07);
- 118               		.loc 3 65 0
- 119 0064 AD9A      		sbi 0x15,5
-  66:leds.h        ****    delay_ms(delay);
- 120               		.loc 3 66 0
- 121 0066 8AEF      		ldi r24,lo8(-6)
- 122 0068 90E0      		ldi r25,0
- 123 006a 0E94 0000 		call delay_ms
- 124               	.LVL10:
-  67:leds.h        ****    pin_low(LED07);
- 125               		.loc 3 67 0
- 126 006e AD98      		cbi 0x15,5
-  68:leds.h        ****    //~ delay_ms(delay);
-  69:leds.h        **** 
-  70:leds.h        ****    pin_high(LED08);
- 127               		.loc 3 70 0
- 128 0070 909A      		sbi 0x12,0
-  71:leds.h        ****    delay_ms(delay);
- 129               		.loc 3 71 0
- 130 0072 8AEF      		ldi r24,lo8(-6)
- 131 0074 90E0      		ldi r25,0
- 132 0076 0E94 0000 		call delay_ms
- 133               	.LVL11:
-  72:leds.h        ****    pin_low(LED08);
- 134               		.loc 3 72 0
- 135 007a 9098      		cbi 0x12,0
-  73:leds.h        ****    //~ delay_ms(delay);
-  74:leds.h        **** 
-  75:leds.h        ****    pin_high(LED09);
- 136               		.loc 3 75 0
- 137 007c AC9A      		sbi 0x15,4
-  76:leds.h        ****    delay_ms(delay);
- 138               		.loc 3 76 0
- 139 007e 8AEF      		ldi r24,lo8(-6)
- 140 0080 90E0      		ldi r25,0
- 141 0082 0E94 0000 		call delay_ms
- 142               	.LVL12:
-  77:leds.h        ****    pin_low(LED09);
- 143               		.loc 3 77 0
- 144 0086 AC98      		cbi 0x15,4
-  78:leds.h        ****    //~ delay_ms(delay);
-  79:leds.h        **** 
-  80:leds.h        ****    pin_high(LED10);
- 145               		.loc 3 80 0
- 146 0088 919A      		sbi 0x12,1
-  81:leds.h        ****    delay_ms(delay);
- 147               		.loc 3 81 0
- 148 008a 8AEF      		ldi r24,lo8(-6)
- 149 008c 90E0      		ldi r25,0
- 150 008e 0E94 0000 		call delay_ms
- 151               	.LVL13:
-  82:leds.h        ****    pin_low(LED10);
- 152               		.loc 3 82 0
- 153 0092 9198      		cbi 0x12,1
-  83:leds.h        ****    //~ delay_ms(delay);
-  84:leds.h        **** 
-  85:leds.h        ****    pin_high(LED11);
- 154               		.loc 3 85 0
- 155 0094 AB9A      		sbi 0x15,3
-  86:leds.h        ****    delay_ms(delay);
- 156               		.loc 3 86 0
- 157 0096 8AEF      		ldi r24,lo8(-6)
- 158 0098 90E0      		ldi r25,0
- 159 009a 0E94 0000 		call delay_ms
- 160               	.LVL14:
-  87:leds.h        ****    pin_low(LED11);
- 161               		.loc 3 87 0
- 162 009e AB98      		cbi 0x15,3
-  88:leds.h        ****    //~ delay_ms(delay);
-  89:leds.h        **** 
-  90:leds.h        ****    pin_high(LED12);
- 163               		.loc 3 90 0
- 164 00a0 929A      		sbi 0x12,2
-  91:leds.h        ****    delay_ms(delay);
- 165               		.loc 3 91 0
- 166 00a2 8AEF      		ldi r24,lo8(-6)
- 167 00a4 90E0      		ldi r25,0
- 168 00a6 0E94 0000 		call delay_ms
- 169               	.LVL15:
-  92:leds.h        ****    pin_low(LED12);
- 170               		.loc 3 92 0
- 171 00aa 9298      		cbi 0x12,2
-  93:leds.h        ****    //~ delay_ms(delay);
-  94:leds.h        **** 
-  95:leds.h        ****    pin_high(LED13);
- 172               		.loc 3 95 0
- 173 00ac AA9A      		sbi 0x15,2
-  96:leds.h        ****    delay_ms(delay);
- 174               		.loc 3 96 0
- 175 00ae 8AEF      		ldi r24,lo8(-6)
- 176 00b0 90E0      		ldi r25,0
- 177 00b2 0E94 0000 		call delay_ms
- 178               	.LVL16:
-  97:leds.h        ****    pin_low(LED13);
- 179               		.loc 3 97 0
- 180 00b6 AA98      		cbi 0x15,2
-  98:leds.h        ****    //~ delay_ms(delay);
+  78:leds.h        ****     pin_low(LED01);
+  63               		.loc 3 78 0
+  64 001c C098      		cbi 0x18,0
+  79:leds.h        ****     pin_low(LED02);
+  65               		.loc 3 79 0
+  66 001e C198      		cbi 0x18,1
+  80:leds.h        ****     pin_low(LED03);
+  67               		.loc 3 80 0
+  68 0020 C298      		cbi 0x18,2
+  81:leds.h        ****     pin_low(LED04);
+  69               		.loc 3 81 0
+  70 0022 C398      		cbi 0x18,3
+  82:leds.h        ****     pin_low(LED05);
+  71               		.loc 3 82 0
+  72 0024 AF98      		cbi 0x15,7
+  83:leds.h        ****     pin_low(LED06);
+  73               		.loc 3 83 0
+  74 0026 AE98      		cbi 0x15,6
+  84:leds.h        ****     pin_low(LED07);
+  75               		.loc 3 84 0
+  76 0028 AD98      		cbi 0x15,5
+  85:leds.h        ****     pin_low(LED08);
+  77               		.loc 3 85 0
+  78 002a 9098      		cbi 0x12,0
+  86:leds.h        ****     pin_low(LED09);
+  79               		.loc 3 86 0
+  80 002c AC98      		cbi 0x15,4
+  87:leds.h        ****     pin_low(LED10);
+  81               		.loc 3 87 0
+  82 002e 9198      		cbi 0x12,1
+  88:leds.h        ****     pin_low(LED11);
+  83               		.loc 3 88 0
+  84 0030 AB98      		cbi 0x15,3
+  89:leds.h        ****     pin_low(LED12);
+  85               		.loc 3 89 0
+  86 0032 9298      		cbi 0x12,2
+  90:leds.h        ****     pin_low(LED13);
+  87               		.loc 3 90 0
+  88 0034 AA98      		cbi 0x15,2
+  91:leds.h        ****     pin_low(LED14);
+  89               		.loc 3 91 0
+  90 0036 9398      		cbi 0x12,3
+  92:leds.h        ****     pin_low(LED15);
+  91               		.loc 3 92 0
+  92 0038 A998      		cbi 0x15,1
+  93:leds.h        ****     pin_low(LED16);
+  93               		.loc 3 93 0
+  94 003a 9498      		cbi 0x12,4
+  94:leds.h        ****     pin_low(LED17);
+  95               		.loc 3 94 0
+  96 003c A898      		cbi 0x15,0
+  95:leds.h        ****     pin_low(LED18);
+  97               		.loc 3 95 0
+  98 003e 9598      		cbi 0x12,5
+  96:leds.h        ****     pin_low(LED19);
+  99               		.loc 3 96 0
+ 100 0040 9798      		cbi 0x12,7
+  97:leds.h        ****     pin_low(LED20);
+ 101               		.loc 3 97 0
+ 102 0042 9698      		cbi 0x12,6
+ 103 0044 0895      		ret
+ 104               		.cfi_endproc
+ 105               	.LFE8:
+ 107               	.global	LED_init
+ 109               	LED_init:
+ 110               	.LFB7:
+  45:leds.h        **** {
+ 111               		.loc 3 45 0
+ 112               		.cfi_startproc
+ 113               	/* prologue: function */
+ 114               	/* frame size = 0 */
+ 115               	/* stack size = 0 */
+ 116               	.L__stack_usage = 0
+  46:leds.h        ****     set_dir_out(LED01);
+ 117               		.loc 3 46 0
+ 118 0046 B89A      		sbi 0x17,0
+  47:leds.h        ****     set_dir_out(LED02);
+ 119               		.loc 3 47 0
+ 120 0048 B99A      		sbi 0x17,1
+  48:leds.h        ****     set_dir_out(LED03);
+ 121               		.loc 3 48 0
+ 122 004a BA9A      		sbi 0x17,2
+  49:leds.h        ****     set_dir_out(LED04);
+ 123               		.loc 3 49 0
+ 124 004c BB9A      		sbi 0x17,3
+  50:leds.h        ****     set_dir_out(LED05);
+ 125               		.loc 3 50 0
+ 126 004e A79A      		sbi 0x14,7
+  51:leds.h        ****     set_dir_out(LED06);
+ 127               		.loc 3 51 0
+ 128 0050 A69A      		sbi 0x14,6
+  52:leds.h        ****     set_dir_out(LED07);
+ 129               		.loc 3 52 0
+ 130 0052 A59A      		sbi 0x14,5
+  53:leds.h        ****     set_dir_out(LED08);
+ 131               		.loc 3 53 0
+ 132 0054 889A      		sbi 0x11,0
+  54:leds.h        ****     set_dir_out(LED09);
+ 133               		.loc 3 54 0
+ 134 0056 A49A      		sbi 0x14,4
+  55:leds.h        ****     set_dir_out(LED10);
+ 135               		.loc 3 55 0
+ 136 0058 899A      		sbi 0x11,1
+  56:leds.h        ****     set_dir_out(LED11);
+ 137               		.loc 3 56 0
+ 138 005a A39A      		sbi 0x14,3
+  57:leds.h        ****     set_dir_out(LED12);
+ 139               		.loc 3 57 0
+ 140 005c 8A9A      		sbi 0x11,2
+  58:leds.h        ****     set_dir_out(LED13);
+ 141               		.loc 3 58 0
+ 142 005e A29A      		sbi 0x14,2
+  59:leds.h        ****     set_dir_out(LED14);
+ 143               		.loc 3 59 0
+ 144 0060 8B9A      		sbi 0x11,3
+  60:leds.h        ****     set_dir_out(LED15);
+ 145               		.loc 3 60 0
+ 146 0062 A19A      		sbi 0x14,1
+  61:leds.h        ****     set_dir_out(LED16);
+ 147               		.loc 3 61 0
+ 148 0064 8C9A      		sbi 0x11,4
+  62:leds.h        ****     set_dir_out(LED17);
+ 149               		.loc 3 62 0
+ 150 0066 A09A      		sbi 0x14,0
+  63:leds.h        ****     set_dir_out(LED18);
+ 151               		.loc 3 63 0
+ 152 0068 8D9A      		sbi 0x11,5
+  64:leds.h        ****     set_dir_out(LED19);
+ 153               		.loc 3 64 0
+ 154 006a 8F9A      		sbi 0x11,7
+  65:leds.h        ****     set_dir_out(LED20);
+ 155               		.loc 3 65 0
+ 156 006c 8E9A      		sbi 0x11,6
+  67:leds.h        ****     LED_reset();
+ 157               		.loc 3 67 0
+ 158 006e 0C94 0000 		jmp LED_reset
+ 159               	.LVL3:
+ 160               		.cfi_endproc
+ 161               	.LFE7:
+ 163               	.global	lamptest
+ 165               	lamptest:
+ 166               	.LFB9:
+  98:leds.h        **** }
   99:leds.h        **** 
- 100:leds.h        ****    pin_high(LED14);
- 181               		.loc 3 100 0
- 182 00b8 939A      		sbi 0x12,3
- 101:leds.h        ****    delay_ms(delay);
- 183               		.loc 3 101 0
- 184 00ba 8AEF      		ldi r24,lo8(-6)
- 185 00bc 90E0      		ldi r25,0
- 186 00be 0E94 0000 		call delay_ms
- 187               	.LVL17:
- 102:leds.h        ****    pin_low(LED14);
- 188               		.loc 3 102 0
- 189 00c2 9398      		cbi 0x12,3
- 103:leds.h        ****    //~ delay_ms(delay);
- 104:leds.h        **** 
- 105:leds.h        ****    pin_high(LED15);
- 190               		.loc 3 105 0
- 191 00c4 A99A      		sbi 0x15,1
- 106:leds.h        ****    delay_ms(delay);
- 192               		.loc 3 106 0
- 193 00c6 8AEF      		ldi r24,lo8(-6)
- 194 00c8 90E0      		ldi r25,0
- 195 00ca 0E94 0000 		call delay_ms
- 196               	.LVL18:
- 107:leds.h        ****    pin_low(LED15);
- 197               		.loc 3 107 0
- 198 00ce A998      		cbi 0x15,1
- 108:leds.h        ****    //~ delay_ms(delay);
- 109:leds.h        **** 
- 110:leds.h        ****    pin_high(LED16);
- 199               		.loc 3 110 0
- 200 00d0 949A      		sbi 0x12,4
- 111:leds.h        ****    delay_ms(delay);
- 201               		.loc 3 111 0
- 202 00d2 8AEF      		ldi r24,lo8(-6)
- 203 00d4 90E0      		ldi r25,0
- 204 00d6 0E94 0000 		call delay_ms
- 205               	.LVL19:
- 112:leds.h        ****    pin_low(LED16);
- 206               		.loc 3 112 0
- 207 00da 9498      		cbi 0x12,4
- 113:leds.h        ****    //~ delay_ms(delay);
- 114:leds.h        **** 
- 115:leds.h        ****    pin_high(LED17);
- 208               		.loc 3 115 0
- 209 00dc A89A      		sbi 0x15,0
- 116:leds.h        ****    delay_ms(delay);
- 210               		.loc 3 116 0
- 211 00de 8AEF      		ldi r24,lo8(-6)
- 212 00e0 90E0      		ldi r25,0
- 213 00e2 0E94 0000 		call delay_ms
- 214               	.LVL20:
- 117:leds.h        ****    pin_low(LED17);
- 215               		.loc 3 117 0
- 216 00e6 A898      		cbi 0x15,0
- 118:leds.h        ****    //~ delay_ms(delay);
- 119:leds.h        **** 
- 120:leds.h        ****    pin_high(LED18);
- 217               		.loc 3 120 0
- 218 00e8 959A      		sbi 0x12,5
- 121:leds.h        ****    delay_ms(delay);
- 219               		.loc 3 121 0
- 220 00ea 8AEF      		ldi r24,lo8(-6)
- 221 00ec 90E0      		ldi r25,0
- 222 00ee 0E94 0000 		call delay_ms
- 223               	.LVL21:
- 122:leds.h        ****    pin_low(LED18);
- 224               		.loc 3 122 0
- 225 00f2 9598      		cbi 0x12,5
- 123:leds.h        ****    //~ delay_ms(delay);
+ 100:leds.h        **** 
+ 101:leds.h        **** /**
+ 102:leds.h        ****     @brief  Flash all LED's in series.
+ 103:leds.h        ****     @param  none
+ 104:leds.h        ****     @return none
+ 105:leds.h        **** */
+ 106:leds.h        **** void lamptest(void) {
+ 167               		.loc 3 106 0
+ 168               		.cfi_startproc
+ 169               	/* prologue: function */
+ 170               	/* frame size = 0 */
+ 171               	/* stack size = 0 */
+ 172               	.L__stack_usage = 0
+ 173               	.LVL4:
+ 107:leds.h        ****    int delay = 250;
+ 108:leds.h        **** 
+ 109:leds.h        ****    pin_high(LED01);
+ 174               		.loc 3 109 0
+ 175 0072 C09A      		sbi 0x18,0
+ 110:leds.h        ****    delay_ms(delay);
+ 176               		.loc 3 110 0
+ 177 0074 8AEF      		ldi r24,lo8(-6)
+ 178 0076 90E0      		ldi r25,0
+ 179 0078 0E94 0000 		call delay_ms
+ 180               	.LVL5:
+ 111:leds.h        ****    pin_low(LED01);
+ 181               		.loc 3 111 0
+ 182 007c C098      		cbi 0x18,0
+ 112:leds.h        **** 
+ 113:leds.h        ****    pin_high(LED02);
+ 183               		.loc 3 113 0
+ 184 007e C19A      		sbi 0x18,1
+ 114:leds.h        ****    delay_ms(delay);
+ 185               		.loc 3 114 0
+ 186 0080 8AEF      		ldi r24,lo8(-6)
+ 187 0082 90E0      		ldi r25,0
+ 188 0084 0E94 0000 		call delay_ms
+ 189               	.LVL6:
+ 115:leds.h        ****    pin_low(LED02);
+ 190               		.loc 3 115 0
+ 191 0088 C198      		cbi 0x18,1
+ 116:leds.h        **** 
+ 117:leds.h        ****    pin_high(LED03);
+ 192               		.loc 3 117 0
+ 193 008a C29A      		sbi 0x18,2
+ 118:leds.h        ****    delay_ms(delay);
+ 194               		.loc 3 118 0
+ 195 008c 8AEF      		ldi r24,lo8(-6)
+ 196 008e 90E0      		ldi r25,0
+ 197 0090 0E94 0000 		call delay_ms
+ 198               	.LVL7:
+ 119:leds.h        ****    pin_low(LED03);
+ 199               		.loc 3 119 0
+ 200 0094 C298      		cbi 0x18,2
+ 120:leds.h        **** 
+ 121:leds.h        ****    pin_high(LED04);
+ 201               		.loc 3 121 0
+ 202 0096 C39A      		sbi 0x18,3
+ 122:leds.h        ****    delay_ms(delay);
+ 203               		.loc 3 122 0
+ 204 0098 8AEF      		ldi r24,lo8(-6)
+ 205 009a 90E0      		ldi r25,0
+ 206 009c 0E94 0000 		call delay_ms
+ 207               	.LVL8:
+ 123:leds.h        ****    pin_low(LED04);
+ 208               		.loc 3 123 0
+ 209 00a0 C398      		cbi 0x18,3
  124:leds.h        **** 
- 125:leds.h        ****    pin_high(LED19);
- 226               		.loc 3 125 0
- 227 00f4 979A      		sbi 0x12,7
+ 125:leds.h        ****    pin_high(LED05);
+ 210               		.loc 3 125 0
+ 211 00a2 AF9A      		sbi 0x15,7
  126:leds.h        ****    delay_ms(delay);
- 228               		.loc 3 126 0
- 229 00f6 8AEF      		ldi r24,lo8(-6)
- 230 00f8 90E0      		ldi r25,0
- 231 00fa 0E94 0000 		call delay_ms
- 232               	.LVL22:
- 127:leds.h        ****    pin_low(LED19);
- 233               		.loc 3 127 0
- 234 00fe 9798      		cbi 0x12,7
- 128:leds.h        ****    //~ delay_ms(delay);
- 129:leds.h        **** 
- 130:leds.h        ****    pin_high(LED20);
- 235               		.loc 3 130 0
- 236 0100 969A      		sbi 0x12,6
- 131:leds.h        ****    delay_ms(delay);
- 237               		.loc 3 131 0
- 238 0102 8AEF      		ldi r24,lo8(-6)
- 239 0104 90E0      		ldi r25,0
- 240 0106 0E94 0000 		call delay_ms
- 241               	.LVL23:
- 132:leds.h        ****    pin_low(LED20);
- 242               		.loc 3 132 0
- 243 010a 9698      		cbi 0x12,6
- 244 010c 0895      		ret
- 245               		.cfi_endproc
- 246               	.LFE7:
- 248               		.section	.text.startup,"ax",@progbits
- 249               	.global	main
- 251               	main:
- 252               	.LFB8:
- 253               		.file 4 "main.c"
+ 212               		.loc 3 126 0
+ 213 00a4 8AEF      		ldi r24,lo8(-6)
+ 214 00a6 90E0      		ldi r25,0
+ 215 00a8 0E94 0000 		call delay_ms
+ 216               	.LVL9:
+ 127:leds.h        ****    pin_low(LED05);
+ 217               		.loc 3 127 0
+ 218 00ac AF98      		cbi 0x15,7
+ 128:leds.h        **** 
+ 129:leds.h        ****    pin_high(LED06);
+ 219               		.loc 3 129 0
+ 220 00ae AE9A      		sbi 0x15,6
+ 130:leds.h        ****    delay_ms(delay);
+ 221               		.loc 3 130 0
+ 222 00b0 8AEF      		ldi r24,lo8(-6)
+ 223 00b2 90E0      		ldi r25,0
+ 224 00b4 0E94 0000 		call delay_ms
+ 225               	.LVL10:
+ 131:leds.h        ****    pin_low(LED06);
+ 226               		.loc 3 131 0
+ 227 00b8 AE98      		cbi 0x15,6
+ 132:leds.h        **** 
+ 133:leds.h        ****    pin_high(LED07);
+ 228               		.loc 3 133 0
+ 229 00ba AD9A      		sbi 0x15,5
+ 134:leds.h        ****    delay_ms(delay);
+ 230               		.loc 3 134 0
+ 231 00bc 8AEF      		ldi r24,lo8(-6)
+ 232 00be 90E0      		ldi r25,0
+ 233 00c0 0E94 0000 		call delay_ms
+ 234               	.LVL11:
+ 135:leds.h        ****    pin_low(LED07);
+ 235               		.loc 3 135 0
+ 236 00c4 AD98      		cbi 0x15,5
+ 136:leds.h        **** 
+ 137:leds.h        ****    pin_high(LED08);
+ 237               		.loc 3 137 0
+ 238 00c6 909A      		sbi 0x12,0
+ 138:leds.h        ****    delay_ms(delay);
+ 239               		.loc 3 138 0
+ 240 00c8 8AEF      		ldi r24,lo8(-6)
+ 241 00ca 90E0      		ldi r25,0
+ 242 00cc 0E94 0000 		call delay_ms
+ 243               	.LVL12:
+ 139:leds.h        ****    pin_low(LED08);
+ 244               		.loc 3 139 0
+ 245 00d0 9098      		cbi 0x12,0
+ 140:leds.h        **** 
+ 141:leds.h        ****    pin_high(LED09);
+ 246               		.loc 3 141 0
+ 247 00d2 AC9A      		sbi 0x15,4
+ 142:leds.h        ****    delay_ms(delay);
+ 248               		.loc 3 142 0
+ 249 00d4 8AEF      		ldi r24,lo8(-6)
+ 250 00d6 90E0      		ldi r25,0
+ 251 00d8 0E94 0000 		call delay_ms
+ 252               	.LVL13:
+ 143:leds.h        ****    pin_low(LED09);
+ 253               		.loc 3 143 0
+ 254 00dc AC98      		cbi 0x15,4
+ 144:leds.h        **** 
+ 145:leds.h        ****    pin_high(LED10);
+ 255               		.loc 3 145 0
+ 256 00de 919A      		sbi 0x12,1
+ 146:leds.h        ****    delay_ms(delay);
+ 257               		.loc 3 146 0
+ 258 00e0 8AEF      		ldi r24,lo8(-6)
+ 259 00e2 90E0      		ldi r25,0
+ 260 00e4 0E94 0000 		call delay_ms
+ 261               	.LVL14:
+ 147:leds.h        ****    pin_low(LED10);
+ 262               		.loc 3 147 0
+ 263 00e8 9198      		cbi 0x12,1
+ 148:leds.h        **** 
+ 149:leds.h        ****    pin_high(LED11);
+ 264               		.loc 3 149 0
+ 265 00ea AB9A      		sbi 0x15,3
+ 150:leds.h        ****    delay_ms(delay);
+ 266               		.loc 3 150 0
+ 267 00ec 8AEF      		ldi r24,lo8(-6)
+ 268 00ee 90E0      		ldi r25,0
+ 269 00f0 0E94 0000 		call delay_ms
+ 270               	.LVL15:
+ 151:leds.h        ****    pin_low(LED11);
+ 271               		.loc 3 151 0
+ 272 00f4 AB98      		cbi 0x15,3
+ 152:leds.h        **** 
+ 153:leds.h        ****    pin_high(LED12);
+ 273               		.loc 3 153 0
+ 274 00f6 929A      		sbi 0x12,2
+ 154:leds.h        ****    delay_ms(delay);
+ 275               		.loc 3 154 0
+ 276 00f8 8AEF      		ldi r24,lo8(-6)
+ 277 00fa 90E0      		ldi r25,0
+ 278 00fc 0E94 0000 		call delay_ms
+ 279               	.LVL16:
+ 155:leds.h        ****    pin_low(LED12);
+ 280               		.loc 3 155 0
+ 281 0100 9298      		cbi 0x12,2
+ 156:leds.h        **** 
+ 157:leds.h        ****    pin_high(LED13);
+ 282               		.loc 3 157 0
+ 283 0102 AA9A      		sbi 0x15,2
+ 158:leds.h        ****    delay_ms(delay);
+ 284               		.loc 3 158 0
+ 285 0104 8AEF      		ldi r24,lo8(-6)
+ 286 0106 90E0      		ldi r25,0
+ 287 0108 0E94 0000 		call delay_ms
+ 288               	.LVL17:
+ 159:leds.h        ****    pin_low(LED13);
+ 289               		.loc 3 159 0
+ 290 010c AA98      		cbi 0x15,2
+ 160:leds.h        **** 
+ 161:leds.h        ****    pin_high(LED14);
+ 291               		.loc 3 161 0
+ 292 010e 939A      		sbi 0x12,3
+ 162:leds.h        ****    delay_ms(delay);
+ 293               		.loc 3 162 0
+ 294 0110 8AEF      		ldi r24,lo8(-6)
+ 295 0112 90E0      		ldi r25,0
+ 296 0114 0E94 0000 		call delay_ms
+ 297               	.LVL18:
+ 163:leds.h        ****    pin_low(LED14);
+ 298               		.loc 3 163 0
+ 299 0118 9398      		cbi 0x12,3
+ 164:leds.h        **** 
+ 165:leds.h        ****    pin_high(LED15);
+ 300               		.loc 3 165 0
+ 301 011a A99A      		sbi 0x15,1
+ 166:leds.h        ****    delay_ms(delay);
+ 302               		.loc 3 166 0
+ 303 011c 8AEF      		ldi r24,lo8(-6)
+ 304 011e 90E0      		ldi r25,0
+ 305 0120 0E94 0000 		call delay_ms
+ 306               	.LVL19:
+ 167:leds.h        ****    pin_low(LED15);
+ 307               		.loc 3 167 0
+ 308 0124 A998      		cbi 0x15,1
+ 168:leds.h        **** 
+ 169:leds.h        ****    pin_high(LED16);
+ 309               		.loc 3 169 0
+ 310 0126 949A      		sbi 0x12,4
+ 170:leds.h        ****    delay_ms(delay);
+ 311               		.loc 3 170 0
+ 312 0128 8AEF      		ldi r24,lo8(-6)
+ 313 012a 90E0      		ldi r25,0
+ 314 012c 0E94 0000 		call delay_ms
+ 315               	.LVL20:
+ 171:leds.h        ****    pin_low(LED16);
+ 316               		.loc 3 171 0
+ 317 0130 9498      		cbi 0x12,4
+ 172:leds.h        **** 
+ 173:leds.h        ****    pin_high(LED17);
+ 318               		.loc 3 173 0
+ 319 0132 A89A      		sbi 0x15,0
+ 174:leds.h        ****    delay_ms(delay);
+ 320               		.loc 3 174 0
+ 321 0134 8AEF      		ldi r24,lo8(-6)
+ 322 0136 90E0      		ldi r25,0
+ 323 0138 0E94 0000 		call delay_ms
+ 324               	.LVL21:
+ 175:leds.h        ****    pin_low(LED17);
+ 325               		.loc 3 175 0
+ 326 013c A898      		cbi 0x15,0
+ 176:leds.h        **** 
+ 177:leds.h        ****    pin_high(LED18);
+ 327               		.loc 3 177 0
+ 328 013e 959A      		sbi 0x12,5
+ 178:leds.h        ****    delay_ms(delay);
+ 329               		.loc 3 178 0
+ 330 0140 8AEF      		ldi r24,lo8(-6)
+ 331 0142 90E0      		ldi r25,0
+ 332 0144 0E94 0000 		call delay_ms
+ 333               	.LVL22:
+ 179:leds.h        ****    pin_low(LED18);
+ 334               		.loc 3 179 0
+ 335 0148 9598      		cbi 0x12,5
+ 180:leds.h        **** 
+ 181:leds.h        ****    pin_high(LED19);
+ 336               		.loc 3 181 0
+ 337 014a 979A      		sbi 0x12,7
+ 182:leds.h        ****    delay_ms(delay);
+ 338               		.loc 3 182 0
+ 339 014c 8AEF      		ldi r24,lo8(-6)
+ 340 014e 90E0      		ldi r25,0
+ 341 0150 0E94 0000 		call delay_ms
+ 342               	.LVL23:
+ 183:leds.h        ****    pin_low(LED19);
+ 343               		.loc 3 183 0
+ 344 0154 9798      		cbi 0x12,7
+ 184:leds.h        **** 
+ 185:leds.h        ****    pin_high(LED20);
+ 345               		.loc 3 185 0
+ 346 0156 969A      		sbi 0x12,6
+ 186:leds.h        ****    delay_ms(delay);
+ 347               		.loc 3 186 0
+ 348 0158 8AEF      		ldi r24,lo8(-6)
+ 349 015a 90E0      		ldi r25,0
+ 350 015c 0E94 0000 		call delay_ms
+ 351               	.LVL24:
+ 187:leds.h        ****    pin_low(LED20);
+ 352               		.loc 3 187 0
+ 353 0160 9698      		cbi 0x12,6
+ 354 0162 0895      		ret
+ 355               		.cfi_endproc
+ 356               	.LFE9:
+ 358               		.section	.text.startup,"ax",@progbits
+ 359               	.global	main
+ 361               	main:
+ 362               	.LFB10:
+ 363               		.file 4 "main.c"
    1:main.c        **** /*
    2:main.c        ****  * main.c
    3:main.c        ****  *
@@ -604,64 +787,58 @@
   23:main.c        **** #include <avr/io.h>
   24:main.c        **** #include <stdint.h>
   25:main.c        **** #include "delay_ms.h"
-  26:main.c        **** //~ #include "bool.h"
-  27:main.c        **** #include "io.h"
-  28:main.c        **** #include "leds.h"
-  29:main.c        **** 
+  26:main.c        **** #include "io.h"
+  27:main.c        **** #include "leds.h"
+  28:main.c        **** //~ #include "adc.h"
+  29:main.c        **** //~ #include "version.h"
   30:main.c        **** 
-  31:main.c        **** int main(void)
-  32:main.c        **** {
- 254               		.loc 4 32 0
- 255               		.cfi_startproc
- 256               	/* prologue: function */
- 257               	/* frame size = 0 */
- 258               	/* stack size = 0 */
- 259               	.L__stack_usage = 0
+  31:main.c        **** //~ #define VERSION 1.0 // Program version
+  32:main.c        **** //~ #define SENSOR 0    // ADC channel
   33:main.c        **** 
-  34:main.c        ****     // Define outputs
-  35:main.c        ****     DDRB = 0xff;
- 260               		.loc 4 35 0
- 261 0000 8FEF      		ldi r24,lo8(-1)
- 262 0002 87BB      		out 0x17,r24
-  36:main.c        ****     DDRC = 0xFF;
- 263               		.loc 4 36 0
- 264 0004 84BB      		out 0x14,r24
-  37:main.c        ****     DDRD = 0xFF;
- 265               		.loc 4 37 0
- 266 0006 81BB      		out 0x11,r24
-  38:main.c        **** 
-  39:main.c        ****     // Initialize all outputs as low.
-  40:main.c        ****     PORTB = 0;
- 267               		.loc 4 40 0
- 268 0008 18BA      		out 0x18,__zero_reg__
-  41:main.c        ****     PORTC = 0;
- 269               		.loc 4 41 0
- 270 000a 15BA      		out 0x15,__zero_reg__
-  42:main.c        ****     PORTD = 0;
- 271               		.loc 4 42 0
- 272 000c 12BA      		out 0x12,__zero_reg__
-  43:main.c        **** 
-  44:main.c        ****     // Output test run
-  45:main.c        ****     lamptest();
- 273               		.loc 4 45 0
- 274 000e 0E94 0000 		call lamptest
- 275               	.LVL24:
- 276               	.L7:
- 277 0012 00C0      		rjmp .L7
- 278               		.cfi_endproc
- 279               	.LFE8:
- 281               		.text
- 282               	.Letext0:
- 283               		.file 5 "/usr/lib/avr/include/stdint.h"
+  34:main.c        **** 
+  35:main.c        **** /**
+  36:main.c        ****     @brief  Main program
+  37:main.c        ****     @param  none
+  38:main.c        ****     @return int
+  39:main.c        **** **/
+  40:main.c        **** int main(void)
+  41:main.c        **** {
+ 364               		.loc 4 41 0
+ 365               		.cfi_startproc
+ 366               	/* prologue: function */
+ 367               	/* frame size = 0 */
+ 368               	/* stack size = 0 */
+ 369               	.L__stack_usage = 0
+  42:main.c        ****     //Initializers
+  43:main.c        ****     LED_init();     // LED's
+ 370               		.loc 4 43 0
+ 371 0000 0E94 0000 		call LED_init
+ 372               	.LVL25:
+  44:main.c        ****     //~ ADC_init();     // ADC
+  45:main.c        **** 
+  46:main.c        ****     // Output test run
+  47:main.c        ****     lamptest();
+ 373               		.loc 4 47 0
+ 374 0004 0E94 0000 		call lamptest
+ 375               	.LVL26:
+ 376               	.L9:
+ 377 0008 00C0      		rjmp .L9
+ 378               		.cfi_endproc
+ 379               	.LFE10:
+ 381               		.text
+ 382               	.Letext0:
+ 383               		.file 5 "/usr/lib/avr/include/stdint.h"
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 main.c
-     /tmp/ccjqbcCC.s:2      *ABS*:000000000000003e __SP_H__
-     /tmp/ccjqbcCC.s:3      *ABS*:000000000000003d __SP_L__
-     /tmp/ccjqbcCC.s:4      *ABS*:000000000000003f __SREG__
-     /tmp/ccjqbcCC.s:5      *ABS*:0000000000000000 __tmp_reg__
-     /tmp/ccjqbcCC.s:6      *ABS*:0000000000000001 __zero_reg__
-     /tmp/ccjqbcCC.s:12     .text:0000000000000000 delay_ms
-     /tmp/ccjqbcCC.s:54     .text:000000000000001c lamptest
-     /tmp/ccjqbcCC.s:251    .text.startup:0000000000000000 main
+     /tmp/cc8PzPeg.s:2      *ABS*:000000000000003e __SP_H__
+     /tmp/cc8PzPeg.s:3      *ABS*:000000000000003d __SP_L__
+     /tmp/cc8PzPeg.s:4      *ABS*:000000000000003f __SREG__
+     /tmp/cc8PzPeg.s:5      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/cc8PzPeg.s:6      *ABS*:0000000000000001 __zero_reg__
+     /tmp/cc8PzPeg.s:12     .text:0000000000000000 delay_ms
+     /tmp/cc8PzPeg.s:54     .text:000000000000001c LED_reset
+     /tmp/cc8PzPeg.s:109    .text:0000000000000046 LED_init
+     /tmp/cc8PzPeg.s:165    .text:0000000000000072 lamptest
+     /tmp/cc8PzPeg.s:361    .text.startup:0000000000000000 main
 
 NO UNDEFINED SYMBOLS
